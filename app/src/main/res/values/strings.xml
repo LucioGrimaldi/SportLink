@@ -3,6 +3,8 @@
 
     <string name="welcome_message">BENVENUTO IN SPORTLINK</string>
     <string name="welcome_anwser_message">Sei un utente oppure un gestore di una struttura sportiva?</string>
+    <string name="user">UTENTE</string>
+    <string name="manager">GESTORE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
