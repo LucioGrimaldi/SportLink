@@ -14,10 +14,9 @@
             android:layout_height="wrap_content"
             android:text="@string/welcome_message"
             android:textSize="46sp"
-            android:fontFamily=""
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF" />
 
     </RelativeLayout>
 
@@ -31,7 +30,6 @@
             android:layout_height="wrap_content"
             android:text="@string/welcome_anwser_message"
             android:textSize="20sp"
-            android:fontFamily=""
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:layout_centerVertical="true" />
@@ -53,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/user"
                 android:textSize="20sp"
-                android:fontFamily=""
                 android:gravity="end"
                 android:textColor="#FFFFFF"
                 android:layout_centerVertical="true"/>
@@ -83,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/manager"
                 android:textSize="20sp"
-                android:fontFamily=""
                 android:gravity="start"
                 android:textColor="#FFFFFF"
                 android:layout_centerVertical="true"/>
