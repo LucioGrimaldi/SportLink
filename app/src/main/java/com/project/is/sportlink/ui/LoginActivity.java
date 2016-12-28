@@ -38,4 +38,18 @@ public class LoginActivity extends AppCompatActivity {
         eMailEditText.setFocusableInTouchMode(true);
     }
 
+    public void openSignUpForm(){
+
+    }
+
+    public boolean isUtente(){
+
+        return true;
+    }
+
+    public boolean isGestore(){
+
+        return true;
+    }
+
 }

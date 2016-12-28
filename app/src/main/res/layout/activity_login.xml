@@ -99,6 +99,7 @@
                         <Button
                             android:id="@+id/signup_button"
                             android:text="@string/signup"
+                            android:onClick=""
                             android:textColor="#e42b29"
                             android:textSize="14sp"
                             android:layout_centerVertical="true"
@@ -119,13 +120,14 @@
                         <Button
                             android:id="@+id/login_button"
                             android:text="@string/login"
+                            android:onClick=""
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:layout_centerVertical="true"
                             android:layout_width="104dp"
                             android:layout_height="36dp"
                             android:background="@drawable/button_login_shape"
-                            android:elevation="5dp" />
+                            android:elevation="4dp" />
 
                     </RelativeLayout>
 
