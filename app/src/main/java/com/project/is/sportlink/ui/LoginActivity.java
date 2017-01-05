@@ -1,10 +1,12 @@
 package com.project.is.sportlink.ui;
 
+import android.content.Intent;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +18,8 @@ import com.project.is.sportlink.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    boolean IS_UTENTE;
+    boolean IS_GESTORE;
     TextView titleAppNameTextView;
     EditText eMailEditText;
     EditText passwordEditText;
@@ -36,6 +40,39 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText.setTypeface(RobotoThinFont);
 
         eMailEditText.setFocusableInTouchMode(true);
+
+        IS_UTENTE = savedInstanceState.getBoolean("IS_UTENTE");
+        IS_GESTORE = savedInstanceState.getBoolean("IS_GESTORE");
+    }
+
+    public String getEmail(){
+        return eMailEditText.getText().toString();
+    }
+
+    public String getPassword(){
+        return passwordEditText.getText().toString();
+    }
+
+    public void openSignUpForm(View v){
+            Intent i = new Intent(this, RegistrationActivity.class);
+            startActivity(i);
+    }
+
+    public boolean isUtente(){
+        if (IS_UTENTE) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean isGestore(){
+
+        if (IS_GESTORE) {
+            return true;
+        }
+        else
+            return false;
     }
 
 }
