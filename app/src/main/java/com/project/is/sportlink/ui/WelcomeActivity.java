@@ -9,43 +9,73 @@ import android.widget.TextView;
 
 import com.project.is.sportlink.R;
 
+import java.util.logging.Logger;
+
 /**
  * Created by luciogrimaldi on 20/12/16.
  * Version 1.0
  */
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class WelcomeActivity extends AppCompatActivity{
 
+    boolean IS_UTENTE;
+    boolean IS_GESTORE;
     TextView welcomeMessageTextView;
     TextView welcomeAnswerMesssageTextView;
-    TextView userTextView;
-    TextView managerTextView;
+    TextView utenteTextView;
+    TextView gestoreTextView;
+    Logger logger = Logger.getLogger("DEBUG");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         welcomeMessageTextView = (TextView) findViewById(R.id.welcome_message_text_view);
         welcomeAnswerMesssageTextView = (TextView) findViewById(R.id.welcome_answer_message_text_view);
-        userTextView = (TextView) findViewById(R.id.user_text_view);
-        managerTextView = (TextView) findViewById(R.id.manager_text_view);
+        utenteTextView = (TextView) findViewById(R.id.user_text_view);
+        gestoreTextView = (TextView) findViewById(R.id.manager_text_view);
 
-        userTextView.setOnClickListener(this);
-        managerTextView.setOnClickListener(this);
+
+        //cliccando sulla utenteTextView IS_UTENTE sarà true e IS_GESTORE sarà false
+        //e i valori verranno passati alla login activity
+        utenteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IS_UTENTE = true;
+                IS_GESTORE = false;
+                logger.info("IS_UTENTE = " + IS_UTENTE + " " + "IS_GESTORE = " + IS_GESTORE);
+                savedInstanceState.putBoolean("IS_UTENTE", true);
+                savedInstanceState.putBoolean("IS_GESTORE", false);
+                loadLoginActivity();
+
+            }
+        });
+
+        //cliccando sulla gestoreTextView IS_UTENTE sarà false e IS_GESTORE sarà true
+        //e i valori verranno passati alla login activity
+        gestoreTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IS_UTENTE = false;
+                IS_GESTORE = true;
+                logger.info("IS_UTENTE = " + IS_UTENTE + " " + "IS_GESTORE = " + IS_GESTORE);
+                savedInstanceState.putBoolean("IS_UTENTE", false);
+                savedInstanceState.putBoolean("IS_GESTORE", true);
+                loadLoginActivity();
+            }
+        });
 
         //Set custom fonts
         Typeface RobotoThinFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         welcomeMessageTextView.setTypeface(RobotoThinFont);
         welcomeAnswerMesssageTextView.setTypeface(RobotoThinFont);
-        userTextView.setTypeface(RobotoThinFont);
-        managerTextView.setTypeface(RobotoThinFont);
+        utenteTextView.setTypeface(RobotoThinFont);
+        gestoreTextView.setTypeface(RobotoThinFont);
     }
 
-    @Override
-    public void onClick(View v) {
-
+    public void loadLoginActivity(){
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
-
     }
+
 }
