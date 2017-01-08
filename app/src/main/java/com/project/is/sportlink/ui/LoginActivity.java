@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.LoginController;
 
 /**
  * Created by luciogrimaldi on 22/12/16.
@@ -18,11 +19,13 @@ import com.project.is.sportlink.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    boolean IS_UTENTE;
-    boolean IS_GESTORE;
-    TextView titleAppNameTextView;
-    EditText eMailEditText;
-    EditText passwordEditText;
+    private boolean IS_UTENTE;
+    private boolean IS_GESTORE;
+    private TextView titleAppNameTextView;
+    private EditText eMailEditText;
+    private EditText passwordEditText;
+    private LoginController controller;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         eMailEditText = (EditText) findViewById(R.id.editTextEmail);
         passwordEditText = (EditText) findViewById(R.id.ediTextPassword);
 
+        //prendo i dati della welcome activity per sapere se è un utente o un gestore
+        IS_UTENTE = getIntent().getBooleanExtra("IS_UTENTE",false);
+        IS_GESTORE = getIntent().getBooleanExtra("IS_GESTORE",false);
+
+
         //Set custom font
         Typeface RobotoThinFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         titleAppNameTextView.setTypeface(RobotoThinFont);
@@ -41,8 +49,10 @@ public class LoginActivity extends AppCompatActivity {
 
         eMailEditText.setFocusableInTouchMode(true);
 
-        IS_UTENTE = savedInstanceState.getBoolean("IS_UTENTE");
-        IS_GESTORE = savedInstanceState.getBoolean("IS_GESTORE");
+
+        //da inserire nel click listner per login
+        controller= new LoginController(this);
+        controller.MetodoLogin();
     }
 
     public String getEmail(){
@@ -55,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void openSignUpForm(View v){
             Intent i = new Intent(this, RegistrationActivity.class);
+            i.putExtra("IS_UTENTE",IS_UTENTE);
+            i.putExtra("IS_GESTORE",IS_GESTORE);
             startActivity(i);
     }
 
