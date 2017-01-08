@@ -1,10 +1,8 @@
 package com.project.is.sportlink.ui;
 
 import android.content.Intent;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -54,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void openSignUpForm(View v){
-            Intent i = new Intent(this, RegistrationActivity.class);
+            Intent i = new Intent(this, UtenteRegistrationActivity.class);
             startActivity(i);
     }
 
