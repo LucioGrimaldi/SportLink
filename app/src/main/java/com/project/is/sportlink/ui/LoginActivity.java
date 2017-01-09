@@ -16,8 +16,8 @@ import com.project.is.sportlink.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    boolean IS_UTENTE;
-    boolean IS_GESTORE;
+    private boolean IS_UTENTE;
+    private boolean IS_GESTORE;
     TextView titleAppNameTextView;
     EditText eMailEditText;
     EditText passwordEditText;
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
         eMailEditText.setFocusableInTouchMode(true);
 
-        IS_UTENTE = savedInstanceState.getBoolean("IS_UTENTE");
-        IS_GESTORE = savedInstanceState.getBoolean("IS_GESTORE");
+        IS_UTENTE = getIntent().getBooleanExtra("IS_UTENTE", false);
+        IS_GESTORE = getIntent().getBooleanExtra("IS_GESTORE", false);
     }
 
     public String getEmail(){
@@ -52,8 +52,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void openSignUpForm(View v){
+        if (isUtente()) {
             Intent i = new Intent(this, UtenteRegistrationActivity.class);
             startActivity(i);
+        }
+        else if (isGestore()){
+            Intent i = new Intent(this, GestoreRegistrationActivity.class);
+            startActivity(i);
+        }
+    }
+
+    public void login(View v){
+        if (isUtente()){
+            //metodo per il login utente
+        }
+        else if (isGestore()){
+            //metodo per il login gestore
+        }
     }
 
     public boolean isUtente(){

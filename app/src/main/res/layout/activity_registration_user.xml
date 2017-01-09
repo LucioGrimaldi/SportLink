@@ -76,7 +76,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/ediTextNumeroDiTelefono"
+                    android:id="@+id/ediTextTelefonoUtente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -95,7 +95,7 @@
                 android:descendantFocusability="beforeDescendants"
                 android:focusableInTouchMode="true">
                 <EditText
-                    android:id="@+id/editTextEmail"
+                    android:id="@+id/editTextEmailUtente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -114,7 +114,7 @@
                 android:descendantFocusability="beforeDescendants"
                 android:focusableInTouchMode="true">
                 <EditText
-                    android:id="@+id/ediTextPassword"
+                    android:id="@+id/ediTextPasswordUtente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"

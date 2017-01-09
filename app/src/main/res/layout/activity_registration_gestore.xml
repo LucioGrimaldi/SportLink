@@ -1,9 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#1791CE">
@@ -61,7 +56,7 @@
                     android:focusableInTouchMode="true">
 
                     <EditText
-                        android:id="@+id/editTextCognomeUtente"
+                        android:id="@+id/editTextCognomeGestore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
@@ -122,6 +117,7 @@
                     <Button
                         android:id="@+id/button_avanti_gestore"
                         android:text="@string/avanti"
+                        android:onClick="checkFormGestore"
                         android:textColor="#FFFFFF"
                         android:textSize="14sp"
                         android:layout_centerInParent="true"
@@ -150,5 +146,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

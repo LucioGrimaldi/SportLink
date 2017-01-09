@@ -120,7 +120,7 @@
                         <Button
                             android:id="@+id/login_button"
                             android:text="@string/login"
-                            android:onClick=""
+                            android:onClick="login"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:layout_centerVertical="true"
