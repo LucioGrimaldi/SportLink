@@ -67,9 +67,9 @@ public class LoginController {
             //refreshItemsFromTable();
 
         } catch (MalformedURLException e) {
-            Log.e("Erroraccio",e.getMessage());
+            Log.e("Error",e.getMessage());
         } catch (Exception e){
-            Log.e("CATTIVO",e.getMessage());
+            Log.e("Error",e.getMessage());
         }
 
     }
