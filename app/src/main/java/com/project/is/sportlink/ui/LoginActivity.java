@@ -1,12 +1,12 @@
 package com.project.is.sportlink.ui;
 
 import android.content.Intent;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText eMailEditText;
     private EditText passwordEditText;
     private LoginController controller;
-
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         titleAppNameTextView = (TextView) findViewById(R.id.titleAppName);
         eMailEditText = (EditText) findViewById(R.id.editTextEmail);
         passwordEditText = (EditText) findViewById(R.id.ediTextPassword);
+        loginButton=(Button)findViewById(R.id.login_button);
 
         //prendo i dati della welcome activity per sapere se è un utente o un gestore
         IS_UTENTE = getIntent().getBooleanExtra("IS_UTENTE",false);
@@ -49,10 +50,17 @@ public class LoginActivity extends AppCompatActivity {
 
         eMailEditText.setFocusableInTouchMode(true);
 
-
-        //da inserire nel click listner per login
         controller= new LoginController(this);
-        controller.MetodoLogin();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email=getEmail();
+                String password=getPassword();
+                controller.LoginRequest(email,password);
+            }
+        });
+
     }
 
     public String getEmail(){
