@@ -12,9 +12,15 @@
     <string name="nome">Nome</string>
     <string name="cognome">Cognome</string>
     <string name="numero_di_telefono">N° di telefono</string>
+    <string name="avanti">"Avanti >"</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="sport_selezionabili">
+        <item>"Calcio a 5"</item>
+        <item>"Tennis"</item>
+    </string-array>
 </resources>
