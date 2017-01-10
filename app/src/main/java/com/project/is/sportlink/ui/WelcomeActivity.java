@@ -44,8 +44,6 @@ public class WelcomeActivity extends AppCompatActivity{
                 IS_UTENTE = true;
                 IS_GESTORE = false;
                 logger.info("IS_UTENTE = " + IS_UTENTE + " " + "IS_GESTORE = " + IS_GESTORE);
-                savedInstanceState.putBoolean("IS_UTENTE", true);
-                savedInstanceState.putBoolean("IS_GESTORE", false);
                 loadLoginActivity();
 
             }
@@ -59,8 +57,6 @@ public class WelcomeActivity extends AppCompatActivity{
                 IS_UTENTE = false;
                 IS_GESTORE = true;
                 logger.info("IS_UTENTE = " + IS_UTENTE + " " + "IS_GESTORE = " + IS_GESTORE);
-                savedInstanceState.putBoolean("IS_UTENTE", false);
-                savedInstanceState.putBoolean("IS_GESTORE", true);
                 loadLoginActivity();
             }
         });
@@ -75,6 +71,13 @@ public class WelcomeActivity extends AppCompatActivity{
 
     public void loadLoginActivity(){
         Intent i = new Intent(this, LoginActivity.class);
+<<<<<<< HEAD
+        i.putExtra("IS_UTENTE",IS_UTENTE);
+        i.putExtra("IS_GESTORE",IS_GESTORE);
+=======
+        i.putExtra("IS_UTENTE", IS_UTENTE);
+        i.putExtra("IS_GESTORE", IS_GESTORE);
+>>>>>>> refs/remotes/origin/ui-building
         startActivity(i);
     }
 
