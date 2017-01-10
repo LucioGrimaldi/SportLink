@@ -21,17 +21,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean IS_UTENTE;
     private boolean IS_GESTORE;
-<<<<<<< HEAD
+    private LoginController controller;
+    private Button loginButton;
     private TextView titleAppNameTextView;
     private EditText eMailEditText;
     private EditText passwordEditText;
-    private LoginController controller;
-    private Button loginButton;
-=======
-    TextView titleAppNameTextView;
-    EditText eMailEditText;
-    EditText passwordEditText;
->>>>>>> refs/remotes/origin/ui-building
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +50,17 @@ public class LoginActivity extends AppCompatActivity {
 
         eMailEditText.setFocusableInTouchMode(true);
 
-<<<<<<< HEAD
         controller= new LoginController(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=getEmail();
-                String password=getPassword();
-                controller.LoginRequest(email,password);
+                login(view);
             }
         });
 
-=======
         IS_UTENTE = getIntent().getBooleanExtra("IS_UTENTE", false);
         IS_GESTORE = getIntent().getBooleanExtra("IS_GESTORE", false);
->>>>>>> refs/remotes/origin/ui-building
     }
 
     public String getEmail(){
@@ -83,14 +72,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void openSignUpForm(View v){
-<<<<<<< HEAD
-            Intent i = new Intent(this, RegistrationActivity.class);
-            i.putExtra("IS_UTENTE",IS_UTENTE);
-            i.putExtra("IS_GESTORE",IS_GESTORE);
-=======
         if (isUtente()) {
             Intent i = new Intent(this, UtenteRegistrationActivity.class);
->>>>>>> refs/remotes/origin/ui-building
             startActivity(i);
         }
         else if (isGestore()){
@@ -100,12 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View v){
-        if (isUtente()){
-            //metodo per il login utente
-        }
-        else if (isGestore()){
-            //metodo per il login gestore
-        }
+            controller.LoginRequest(getEmail(),getPassword(),IS_UTENTE);
     }
 
     public boolean isUtente(){
