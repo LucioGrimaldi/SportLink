@@ -22,6 +22,10 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
     EditText editTextTelefonoStruttura;
     EditText editTextIndirizzoStruttura;
     EditText editTextCittaStruttura;
+    String nomeGestore;
+    String cognomeGestore;
+    String emailGestore;
+    String passwordGestore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +37,45 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
         editTextIndirizzoStruttura = (EditText)findViewById(R.id.ediTextIndirizzoStruttura);
         editTextCittaStruttura = (EditText)findViewById(R.id.ediTextCittaStruttura);
         buttonAvantiStruttura = (Button)findViewById(R.id.button_avanti_struttura);
+
+        Intent i = getIntent();
+        nomeGestore = i.getStringExtra("NOME_GESTORE");
+        cognomeGestore = i.getStringExtra("COGNOME_GESTORE");
+        emailGestore =  i.getStringExtra("EMAIL_GESTORE");
+        passwordGestore = i.getStringExtra("PASSWORD_GESTORE");
+
+    }
+
+    public String getNomeGestore() {
+        return nomeGestore;
+    }
+
+    public String getCognomeGestore() {
+        return cognomeGestore;
+    }
+
+    public String getEmailGestore() {
+        return emailGestore;
+    }
+
+    public String getPasswordGestore() {
+        return passwordGestore;
+    }
+
+    public String getNomeStruttura(){
+        return editTextNomeStruttura.getText().toString();
+    }
+
+    public String getTelefonoStruttura(){
+        return editTextTelefonoStruttura.getText().toString();
+    }
+
+    public String getIndirizzoStruttura(){
+        return editTextIndirizzoStruttura.getText().toString();
+    }
+
+    public String getCittaStruttura(){
+        return editTextCittaStruttura.getText().toString();
     }
 
     public void checkFormStruttura(View v){
@@ -48,6 +91,14 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
     }
     public void openCampoSignUpForm(){
         Intent i = new Intent(this, CampoRegistrationActivity.class);
+        i.putExtra("NOME_GESTORE", getNomeGestore());
+        i.putExtra("COGNOME_GESTORE", getCognomeGestore());
+        i.putExtra("EMAIL_GESTORE", getEmailGestore());
+        i.putExtra("PASSWORD_GESTORE", getPasswordGestore());
+        i.putExtra("NOME_STRUTTURA", getNomeStruttura());
+        i.putExtra("TELEFONO_STRUTTURA", getTelefonoStruttura());
+        i.putExtra("INDIRIZZO_STRUTTURA", getIndirizzoStruttura());
+        i.putExtra("CITTA_STRUTTURA", getCittaStruttura());
         startActivity(i);
     }
 }
