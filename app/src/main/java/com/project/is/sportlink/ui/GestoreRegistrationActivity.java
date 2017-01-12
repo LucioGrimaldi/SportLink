@@ -36,6 +36,22 @@ public class GestoreRegistrationActivity extends AppCompatActivity{
 
     }
 
+    public String getNomeGestore(){
+        return editTextNomeGestore.getText().toString();
+    }
+
+    public String getCognomeGestore(){
+        return editTextCognomeGestore.getText().toString();
+    }
+
+    public String getEmailGestore(){
+        return editTextEmailGestore.getText().toString();
+    }
+
+    public String getPasswordGestore(){
+        return editTextPasswordGestore.getText().toString();
+    }
+
     public void checkFormGestore(View v){
         if(isEmpty(editTextNomeGestore) || isEmpty(editTextCognomeGestore) || isEmpty(editTextEmailGestore) || isEmpty(editTextPasswordGestore)){
             Toast.makeText(getApplicationContext(), "Per favore inserire tutti i campi", Toast.LENGTH_SHORT).show();
@@ -47,6 +63,10 @@ public class GestoreRegistrationActivity extends AppCompatActivity{
 
     public void openStrutturaSignUpForm(){
         Intent i = new Intent(this, StrutturaRegistrationActivity.class);
+        i.putExtra("NOME_GESTORE", getNomeGestore());
+        i.putExtra("COGNNOME_GESTORE", getCognomeGestore());
+        i.putExtra("EMAIL_GESTORE", getEmailGestore());
+        i.putExtra("PASSWORD_GESTORE", getPasswordGestore());
         startActivity(i);
     }
 
