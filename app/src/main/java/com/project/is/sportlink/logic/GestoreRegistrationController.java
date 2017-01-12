@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -40,7 +41,7 @@ public class GestoreRegistrationController {
     public GestoreRegistrationController(Context context){this.context=context;}
 
     //connessione DB
-    public void GestoreRegistrationRequest(String nome_g,String email,String password,String nome_s,String telefono_s,String indirizzo_s,String città_s,String nome_c,String sport_c){
+    public void GestoreRegistrationRequest(String nome_g,String cognome_g,String email,String password,String nome_s,String telefono_s,String indirizzo_s,String città_s,String nome_c,String sport_c){
 
         try {
             // Create the Mobile Service Client instance, using the provided
@@ -73,6 +74,7 @@ public class GestoreRegistrationController {
 
             newGestore =new Gestore();
             newGestore.setmNome(nome_g);
+            newGestore.setmCognome(cognome_g);
             newGestore.setmEmail(email);
             newGestore.setmPass(password);
 
@@ -111,8 +113,8 @@ public class GestoreRegistrationController {
         mCampoTable.insert(campo).get();
 
     }
-    public List<Campo> riceviInfoCampiRegistrati(String email)throws MobileServiceException,ExecutionException,InterruptedException{
-        return mCampoTable.where().field("email_u").eq(email).execute().get();}
+    public List<Campo> riceviInfoCampiRegistrati(String nome_c)throws MobileServiceException,ExecutionException,InterruptedException{
+        return mCampoTable.where().field("nome_c").eq(nome_c).execute().get();}
 
     public void registrazioneNuovaStruttura(final Struttura s,final Campo c,final Gestore g,final String email,final String nome_c,final String nome_s){
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>(){
@@ -134,7 +136,24 @@ public class GestoreRegistrationController {
                 try {
                     final List<Struttura> results = riceviInfoStruttureRegistrate(nome_s);
                     if(results.isEmpty()){
-                        return 2;
+                        inserisciStruttura(s);
+                        final List<Struttura> result_s = riceviInfoStruttureRegistrate(nome_s);
+                        final List<Gestore> result_g = riceviInfoGestoriRegistrati(email);
+                        final List<Campo> result_c = riceviInfoCampiRegistrati(nome_c);
+                        if(result_s.isEmpty()){
+                            return 1;
+                        }else if(result_g.isEmpty() && result_c.isEmpty()){
+                            Log.d("debug","arrivo anche nell'else if!");
+                            Struttura temp = result_s.get(0);
+                            String temp2 = temp.getmId();
+                            g.setmFK_struttura(temp2);
+                            c.setmFK_struttura(temp2);
+                            inserisciGestore(g);
+                            inserisciCampo(c);
+                            return 2;
+                        }else{
+                            return 1;
+                        }
                     }else{
                         return 1;
                     }
@@ -150,92 +169,20 @@ public class GestoreRegistrationController {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
-
                 if(b==2){
-                    try {
-                        inserisciStruttura(s);
-                    } catch (MobileServiceException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    registrazioneNuovoCampoEGestore(c,g,email,nome_s,nome_c);
+                    Toast toast= Toast.makeText(context,"la registrazione si è conclusa con successo!",Toast.LENGTH_LONG);
+                    toast.show();
+                    Intent i= new Intent(context,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("IS_UTENTE",false);
+                    i.putExtra("IS_GESTORE",true);
+                    context.startActivity(i);
                 }else{
                     Toast toast= Toast.makeText(context,"sono stati riscontrati degli errori durante l'inserimento della struttura",Toast.LENGTH_LONG);
                     toast.show();
-                }
-
-            }
-        };
-
-        runAsyncTask(task);
-    }
-
-    public void registrazioneNuovoCampoEGestore(final Campo c,final Gestore g,final String email,final String nome_s,final String nome_c){
-        AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>(){
-
-            ProgressDialog dialog;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                dialog = new ProgressDialog(context);
-                dialog.setMessage("Please wait...");
-                dialog.setIndeterminate(true);
-                dialog.show();
-            }
-
-            @Override
-            protected Integer doInBackground(Void... params) {
-
-                try {
-                    final List<Struttura> result_s = riceviInfoStruttureRegistrate(nome_s);
-                    final List<Gestore> result_g = riceviInfoGestoriRegistrati(email);
-                    final List<Campo> result_c = riceviInfoCampiRegistrati(nome_c);
-                    if(result_s.isEmpty()){
-                        return 1;
-                    }else if(result_g.isEmpty() || result_c.isEmpty()){
-                        return 1;
-                    }else if(result_g.isEmpty() && result_c.isEmpty()){
-                        Struttura temp = result_s.get(0);
-                        String temp2 = temp.getmId();
-                        g.setmFK_struttura(temp2);
-                        c.setmFK_struttura(temp2);
-                        inserisciGestore(g);
-                        inserisciCampo(c);
-                        return 2;
-                    }else{
-                        return 1;
-                    }
-                } catch (final Exception e){
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Integer b) {
-                super.onPostExecute(b);
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
-
-                if(b==2){
-                    Toast toast = Toast.makeText(context,"La registrazione è avvenuta con successo.\nOra puoi effettuare la login.",Toast.LENGTH_LONG);
-                    toast.show();
-                    Intent intent= new Intent(context,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("IS_UTENTE",false);
-                    intent.putExtra("IS_GESTORE",true);
-                    context.startActivity(intent);
-                }else{
-                    Toast toast = Toast.makeText(context,"l'email inserita è già registrata.\nRiprova inserendo una email diversa.",Toast.LENGTH_LONG);
-                    toast.show();
-                    Intent intent= new Intent(context,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("IS_UTENTE",false);
-                    intent.putExtra("IS_GESTORE",true);
-                    context.startActivity(intent);
+                    Intent i= new Intent(context,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("IS_UTENTE",false);
+                    i.putExtra("IS_GESTORE",true);
+                    context.startActivity(i);
                 }
 
             }

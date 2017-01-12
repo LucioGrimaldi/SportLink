@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.GestoreRegistrationController;
 
 /**
  * Created by luciogrimaldi on 09/01/17.
@@ -33,6 +34,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     String telefonoStruttura;
     String indirizzoStruttura;
     String cittaStruttura;
+    GestoreRegistrationController controller;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
         telefonoStruttura = i.getStringExtra("TELEFONO_STRUTTURA");
         indirizzoStruttura = i.getStringExtra("INDIRIZZO_STRUTTURA");
         cittaStruttura = i.getStringExtra("CITTA_STRUTTURA");
+
 
     }
 
@@ -125,7 +128,8 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     }
 
     private void signUpGestore(){
-
+        controller= new GestoreRegistrationController(this);
+        controller.GestoreRegistrationRequest(nomeGestore,cognomeGestore,emailGestore,passwordGestore,nomeStruttura,telefonoStruttura,indirizzoStruttura,cittaStruttura,getNomeCampo(),getTipoSport());
     }
 }
 
