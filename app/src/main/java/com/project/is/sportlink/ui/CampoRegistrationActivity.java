@@ -1,5 +1,6 @@
 package com.project.is.sportlink.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.GestoreRegistrationController;
 
 /**
  * Created by luciogrimaldi on 09/01/17.
@@ -24,6 +26,15 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     Button buttonSignUp;
     EditText editTextNomeCampo;
     Spinner spinner;
+    String nomeGestore;
+    String cognomeGestore;
+    String emailGestore;
+    String passwordGestore;
+    String nomeStruttura;
+    String telefonoStruttura;
+    String indirizzoStruttura;
+    String cittaStruttura;
+    GestoreRegistrationController controller;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +61,58 @@ public class CampoRegistrationActivity extends AppCompatActivity {
 
             }
         });
+
+        Intent i = getIntent();
+        nomeGestore = i.getStringExtra("NOME_GESTORE");
+        cognomeGestore = i.getStringExtra("COGNOME_GESTORE");
+        emailGestore =  i.getStringExtra("EMAIL_GESTORE");
+        passwordGestore = i.getStringExtra("PASSWORD_GESTORE");
+        nomeStruttura = i.getStringExtra("NOME_STRUTTUA");
+        telefonoStruttura = i.getStringExtra("TELEFONO_STRUTTURA");
+        indirizzoStruttura = i.getStringExtra("INDIRIZZO_STRUTTURA");
+        cittaStruttura = i.getStringExtra("CITTA_STRUTTURA");
+
+
+    }
+
+    public String getNomeCampo(){
+        return editTextNomeCampo.getText().toString();
+    }
+
+    public String getTipoSport(){
+        return spinner.getSelectedItem().toString();
+    }
+
+    public String getNomeGestore() {
+        return nomeGestore;
+    }
+
+    public String getCognomeGestore() {
+        return cognomeGestore;
+    }
+
+    public String getEmailGestore() {
+        return emailGestore;
+    }
+
+    public String getPasswordGestore() {
+        return passwordGestore;
+    }
+
+    public String getNomeStruttura() {
+        return nomeStruttura;
+    }
+
+    public String getTelefonoStruttura() {
+        return telefonoStruttura;
+    }
+
+    public String getIndirizzoStruttura() {
+        return indirizzoStruttura;
+    }
+
+    public String getCittaStruttura() {
+        return cittaStruttura;
     }
 
     public void checkFormCampo(View v){
@@ -65,7 +128,8 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     }
 
     private void signUpGestore(){
-
+        controller= new GestoreRegistrationController(this);
+        controller.GestoreRegistrationRequest(nomeGestore,cognomeGestore,emailGestore,passwordGestore,nomeStruttura,telefonoStruttura,indirizzoStruttura,cittaStruttura,getNomeCampo(),getTipoSport());
     }
 }
 

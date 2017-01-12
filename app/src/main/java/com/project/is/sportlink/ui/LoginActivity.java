@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean IS_GESTORE;
     private LoginController controller;
     private Button loginButton;
+    private Button signUpButton;
     private TextView titleAppNameTextView;
     private EditText eMailEditText;
     private EditText passwordEditText;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         eMailEditText = (EditText) findViewById(R.id.editTextEmail);
         passwordEditText = (EditText) findViewById(R.id.ediTextPassword);
         loginButton=(Button)findViewById(R.id.login_button);
+        signUpButton= (Button) findViewById(R.id.signup_button);
 
         //prendo i dati della welcome activity per sapere se è un utente o un gestore
         IS_UTENTE = getIntent().getBooleanExtra("IS_UTENTE",false);
@@ -56,6 +58,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 login(view);
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSignUpForm(view);
             }
         });
 
