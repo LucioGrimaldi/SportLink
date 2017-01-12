@@ -1,10 +1,10 @@
 package com.project.is.sportlink.DataModel;
 
 /**
- * Created by Mario on 10/01/2017.
+ * Created by Mario on 11/01/2017.
  */
 
-public class Gestore {
+public class Campo {
     /**
      * Item id
      */
@@ -12,28 +12,16 @@ public class Gestore {
     private String mId;
 
     /**
-     * Item nome_u
+     * Item nome_c
      */
-    @com.google.gson.annotations.SerializedName("nome_g")
+    @com.google.gson.annotations.SerializedName("nome_c")
     private String mNome;
 
     /**
-     * Item cognome_u
+     * Item sport_c
      */
-    @com.google.gson.annotations.SerializedName("cognome_g")
-    private String mCognome;
-
-    /**
-     * Item email_u
-     */
-    @com.google.gson.annotations.SerializedName("email_g")
-    private String mEmail;
-
-    /**
-     * Item pass_u
-     */
-    @com.google.gson.annotations.SerializedName("password_g")
-    private String mPass;
+    @com.google.gson.annotations.SerializedName("sport_c")
+    private String mSport;
 
 
     @com.google.gson.annotations.SerializedName("FK_struttura")
@@ -54,25 +42,21 @@ public class Gestore {
 
 
     /**
-     * Gestore constructor
+     * Struttura constructor
      */
-    public Gestore(){
+    public Campo(){
 
     }
 
     /**
-     * Initializes a new Gestore
-     * @param mEmail l'email dell'utente
-     * @param mNome Il nome dell'utente
-     * @param mCognome Il cognome dell'utente
-     * @param mPass La password dell'utente
+     * Initializes a new Campo
+     * @param mNome Il nome della struttura
+     * @param mSport lo sport che si può praticare nel campo
      */
-    public Gestore(String mId, String mEmail, String mNome, String mCognome, String mPass,String mFK_struttura) {
+    public Campo(String mId, String mNome, String mSport,String mFK_struttura) {
         this.setmId(mId);
-        this.setmEmail(mEmail);
         this.setmNome(mNome);
-        this.setmCognome(mCognome);
-        this.setmPass(mPass);
+        this.setmSport(mSport);
         this.setmFK_struttura(mFK_struttura);
     }
 
@@ -100,28 +84,12 @@ public class Gestore {
         this.mNome = mNome;
     }
 
-    public String getmCognome() {
-        return mCognome;
+    public String getmSport() {
+        return mSport;
     }
 
-    public void setmCognome(String mCognome) {
-        this.mCognome = mCognome;
-    }
-
-    public String getmEmail() {
-        return mEmail;
-    }
-
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
-    }
-
-    public String getmPass() {
-        return mPass;
-    }
-
-    public void setmPass(String mPass) {
-        this.mPass = mPass;
+    public void setmSport(String mSport) {
+        this.mSport = mSport;
     }
 
     public String getmVersion() {

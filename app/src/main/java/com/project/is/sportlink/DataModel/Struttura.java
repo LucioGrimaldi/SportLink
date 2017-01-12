@@ -1,10 +1,10 @@
 package com.project.is.sportlink.DataModel;
 
 /**
- * Created by Mario on 10/01/2017.
+ * Created by Mario on 11/01/2017.
  */
 
-public class Gestore {
+public class Struttura {
     /**
      * Item id
      */
@@ -12,32 +12,28 @@ public class Gestore {
     private String mId;
 
     /**
-     * Item nome_u
+     * Item nome_s
      */
-    @com.google.gson.annotations.SerializedName("nome_g")
+    @com.google.gson.annotations.SerializedName("nome_s")
     private String mNome;
 
     /**
-     * Item cognome_u
+     * Item telefono_s
      */
-    @com.google.gson.annotations.SerializedName("cognome_g")
-    private String mCognome;
+    @com.google.gson.annotations.SerializedName("telefono_s")
+    private String mTelefono;
 
     /**
-     * Item email_u
+     * Item indirizzo_s
      */
-    @com.google.gson.annotations.SerializedName("email_g")
-    private String mEmail;
+    @com.google.gson.annotations.SerializedName("indirizzo_s")
+    private String mIndirizzo;
 
     /**
-     * Item pass_u
+     * Item città_s
      */
-    @com.google.gson.annotations.SerializedName("password_g")
-    private String mPass;
-
-
-    @com.google.gson.annotations.SerializedName("FK_struttura")
-    private String mFK_struttura;
+    @com.google.gson.annotations.SerializedName("citta_s")
+    private String mCittà;
 
 
     @com.google.gson.annotations.SerializedName("version")
@@ -54,34 +50,25 @@ public class Gestore {
 
 
     /**
-     * Gestore constructor
+     * Struttura constructor
      */
-    public Gestore(){
+    public Struttura(){
 
     }
 
     /**
-     * Initializes a new Gestore
-     * @param mEmail l'email dell'utente
-     * @param mNome Il nome dell'utente
-     * @param mCognome Il cognome dell'utente
-     * @param mPass La password dell'utente
+     * Initializes a new Struttura
+     * @param mNome Il nome della struttura
+     * @param mTelefono Il numero di telefono della struttura
+     * @param mIndirizzo indirizzo della struttura
+     * @param mCittà città nella quale si trova la struttura sportiva
      */
-    public Gestore(String mId, String mEmail, String mNome, String mCognome, String mPass,String mFK_struttura) {
+    public Struttura(String mId, String mNome, String mTelefono, String mIndirizzo, String mCittà) {
         this.setmId(mId);
-        this.setmEmail(mEmail);
         this.setmNome(mNome);
-        this.setmCognome(mCognome);
-        this.setmPass(mPass);
-        this.setmFK_struttura(mFK_struttura);
-    }
-
-    public String getmFK_struttura() {
-        return mFK_struttura;
-    }
-
-    public void setmFK_struttura(String mFK_struttura) {
-        this.mFK_struttura = mFK_struttura;
+        this.setmTelefono(mTelefono);
+        this.setmIndirizzo(mIndirizzo);
+        this.setmCittà(mCittà);
     }
 
     public String getmId() {
@@ -100,28 +87,28 @@ public class Gestore {
         this.mNome = mNome;
     }
 
-    public String getmCognome() {
-        return mCognome;
+    public String getmTelefono() {
+        return mTelefono;
     }
 
-    public void setmCognome(String mCognome) {
-        this.mCognome = mCognome;
+    public void setmTelefono(String mTelefono) {
+        this.mTelefono = mTelefono;
     }
 
-    public String getmEmail() {
-        return mEmail;
+    public String getmIndirizzo() {
+        return mIndirizzo;
     }
 
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
+    public void setmIndirizzo(String mIndirizzo) {
+        this.mIndirizzo = mIndirizzo;
     }
 
-    public String getmPass() {
-        return mPass;
+    public String getmCittà() {
+        return mCittà;
     }
 
-    public void setmPass(String mPass) {
-        this.mPass = mPass;
+    public void setmCittà(String mCittà) {
+        this.mCittà = mCittà;
     }
 
     public String getmVersion() {
