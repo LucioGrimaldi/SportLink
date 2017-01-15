@@ -71,13 +71,11 @@ public class WelcomeActivity extends AppCompatActivity{
 
     public void loadLoginActivity(){
         Intent i = new Intent(this, LoginActivity.class);
-<<<<<<< HEAD
         i.putExtra("IS_UTENTE",IS_UTENTE);
         i.putExtra("IS_GESTORE",IS_GESTORE);
-=======
         i.putExtra("IS_UTENTE", IS_UTENTE);
         i.putExtra("IS_GESTORE", IS_GESTORE);
->>>>>>> refs/remotes/origin/ui-building
+
         startActivity(i);
     }
 
