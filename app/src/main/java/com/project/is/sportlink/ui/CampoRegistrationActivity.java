@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.GestoreRegistrationController;
 
 /**
  * Created by luciogrimaldi on 09/01/17.
@@ -33,6 +35,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     String telefonoStruttura;
     String indirizzoStruttura;
     String cittaStruttura;
+    GestoreRegistrationController controller;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,10 +68,11 @@ public class CampoRegistrationActivity extends AppCompatActivity {
         cognomeGestore = i.getStringExtra("COGNOME_GESTORE");
         emailGestore =  i.getStringExtra("EMAIL_GESTORE");
         passwordGestore = i.getStringExtra("PASSWORD_GESTORE");
-        nomeStruttura = i.getStringExtra("NOME_STRUTTUA");
+        nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         telefonoStruttura = i.getStringExtra("TELEFONO_STRUTTURA");
         indirizzoStruttura = i.getStringExtra("INDIRIZZO_STRUTTURA");
         cittaStruttura = i.getStringExtra("CITTA_STRUTTURA");
+
 
     }
 
@@ -125,7 +129,9 @@ public class CampoRegistrationActivity extends AppCompatActivity {
     }
 
     private void signUpGestore(){
-
+        controller= new GestoreRegistrationController(this);
+        Log.d("Prova","nome struttura"+getNomeStruttura());
+        controller.GestoreRegistrationRequest(getNomeGestore(),getCognomeGestore(),getEmailGestore(),getPasswordGestore(),getNomeStruttura(),getTelefonoStruttura(),getIndirizzoStruttura(),getCittaStruttura(),getNomeCampo(),getTipoSport());
     }
 }
 

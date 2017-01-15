@@ -99,7 +99,6 @@
                         <Button
                             android:id="@+id/signup_button"
                             android:text="@string/signup"
-                            android:onClick="openSignUpForm"
                             android:textColor="#e42b29"
                             android:textSize="14sp"
                             android:layout_centerVertical="true"

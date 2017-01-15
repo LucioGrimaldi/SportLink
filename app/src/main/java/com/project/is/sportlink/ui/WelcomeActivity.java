@@ -73,9 +73,6 @@ public class WelcomeActivity extends AppCompatActivity{
         Intent i = new Intent(this, LoginActivity.class);
         i.putExtra("IS_UTENTE",IS_UTENTE);
         i.putExtra("IS_GESTORE",IS_GESTORE);
-        i.putExtra("IS_UTENTE", IS_UTENTE);
-        i.putExtra("IS_GESTORE", IS_GESTORE);
-
         startActivity(i);
     }
 

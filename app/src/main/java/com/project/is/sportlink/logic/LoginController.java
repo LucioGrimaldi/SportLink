@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -124,6 +125,8 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",true);
+                    intent.putExtra("IS_GESTORE",false);
                     context.startActivity(intent);
                 }
 
@@ -182,6 +185,8 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",false);
+                    intent.putExtra("IS_GESTORE",true);
                     context.startActivity(intent);
                 }
 
