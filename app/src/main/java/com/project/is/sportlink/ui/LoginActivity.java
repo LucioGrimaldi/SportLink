@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View v){
-            controller.LoginRequest(getEmail(),getPassword(),IS_UTENTE);
+        controller.LoginRequest(getEmail(),getPassword(),IS_UTENTE);
     }
 
     public boolean isUtente(){
