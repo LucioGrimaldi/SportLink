@@ -23,6 +23,11 @@ public class Campo {
     @com.google.gson.annotations.SerializedName("sport_c")
     private String mSport;
 
+    /**
+     * Item nome_s
+     */
+    @com.google.gson.annotations.SerializedName("nome_s")
+    private String mNome_s;
 
     @com.google.gson.annotations.SerializedName("FK_struttura")
     private String mFK_struttura;
@@ -53,11 +58,20 @@ public class Campo {
      * @param mNome Il nome della struttura
      * @param mSport lo sport che si può praticare nel campo
      */
-    public Campo(String mId, String mNome, String mSport,String mFK_struttura) {
+    public Campo(String mId, String mNome, String mSport,String mFK_struttura,String mNome_s) {
         this.setmId(mId);
         this.setmNome(mNome);
         this.setmSport(mSport);
         this.setmFK_struttura(mFK_struttura);
+        this.setmNome_s(mNome_s);
+    }
+
+    public String getmNome_s() {
+        return mNome_s;
+    }
+
+    public void setmNome_s(String mNome_s) {
+        this.mNome_s = mNome_s;
     }
 
     public String getmFK_struttura() {

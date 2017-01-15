@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
@@ -96,10 +97,10 @@ public class UserRegistrationController {
 
             @Override
             protected Integer doInBackground(Void... params) {
-
                 try {
                     final List<Utente> results = riceviInfoUtentiRegistrati(email);
                     if(results.isEmpty()){
+                        inserisciUtente(u);
                         return 2;
                     }else{
                         return 1;
@@ -118,15 +119,6 @@ public class UserRegistrationController {
                 }
 
                 if(b==2){
-                    try {
-                        inserisciUtente(u);
-                    } catch (MobileServiceException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     Toast toast = Toast.makeText(context,"La registrazione è avvenuta con successo.\nOra puoi effettuare la login.",Toast.LENGTH_LONG);
                     toast.show();
                     Intent intent= new Intent(context,LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

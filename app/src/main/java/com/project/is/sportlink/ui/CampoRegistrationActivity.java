@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,7 +68,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
         cognomeGestore = i.getStringExtra("COGNOME_GESTORE");
         emailGestore =  i.getStringExtra("EMAIL_GESTORE");
         passwordGestore = i.getStringExtra("PASSWORD_GESTORE");
-        nomeStruttura = i.getStringExtra("NOME_STRUTTUA");
+        nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         telefonoStruttura = i.getStringExtra("TELEFONO_STRUTTURA");
         indirizzoStruttura = i.getStringExtra("INDIRIZZO_STRUTTURA");
         cittaStruttura = i.getStringExtra("CITTA_STRUTTURA");
@@ -129,7 +130,8 @@ public class CampoRegistrationActivity extends AppCompatActivity {
 
     private void signUpGestore(){
         controller= new GestoreRegistrationController(this);
-        controller.GestoreRegistrationRequest(nomeGestore,cognomeGestore,emailGestore,passwordGestore,nomeStruttura,telefonoStruttura,indirizzoStruttura,cittaStruttura,getNomeCampo(),getTipoSport());
+        Log.d("Prova","nome struttura"+getNomeStruttura());
+        controller.GestoreRegistrationRequest(getNomeGestore(),getCognomeGestore(),getEmailGestore(),getPasswordGestore(),getNomeStruttura(),getTelefonoStruttura(),getIndirizzoStruttura(),getCittaStruttura(),getNomeCampo(),getTipoSport());
     }
 }
 

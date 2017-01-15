@@ -125,6 +125,8 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",true);
+                    intent.putExtra("IS_GESTORE",false);
                     context.startActivity(intent);
                 }
 
@@ -183,6 +185,8 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",false);
+                    intent.putExtra("IS_GESTORE",true);
                     context.startActivity(intent);
                 }
 
