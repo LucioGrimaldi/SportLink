@@ -14,7 +14,7 @@ import com.project.is.sportlink.R;
 
 public class PrenotazioneActivity extends AppCompatActivity {
 
-    ImageButton backFromPrenotazioneButton;
+    private ImageButton backFromPrenotazioneButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

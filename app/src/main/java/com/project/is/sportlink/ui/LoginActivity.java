@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView titleAppNameTextView;
     private EditText eMailEditText;
     private EditText passwordEditText;
+    private String email;
+    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +74,11 @@ public class LoginActivity extends AppCompatActivity {
         IS_GESTORE = getIntent().getBooleanExtra("IS_GESTORE", false);
     }
 
-    public String getEmail(){
+    public String getEmailFromEditText(){
         return eMailEditText.getText().toString();
     }
 
-    public String getPassword(){
+    public String getPasswordFromEditText(){
         return passwordEditText.getText().toString();
     }
 
@@ -92,7 +94,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View v){
-        controller.LoginRequest(getEmail(),getPassword(),IS_UTENTE);
+        email=getEmailFromEditText();
+        pass=getPasswordFromEditText();
+        controller.LoginRequest(getEmailFromEditText(),getPasswordFromEditText(),IS_UTENTE);
     }
 
     public boolean isUtente(){
@@ -112,4 +116,18 @@ public class LoginActivity extends AppCompatActivity {
             return false;
     }
 
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 }

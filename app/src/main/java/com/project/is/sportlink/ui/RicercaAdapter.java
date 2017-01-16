@@ -3,6 +3,7 @@ package com.project.is.sportlink.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.project.is.sportlink.DataModel.Campo;
+import com.project.is.sportlink.DataModel.Struttura;
 import com.project.is.sportlink.DataModel.Utente;
 import com.project.is.sportlink.R;
+
+import java.util.List;
 
 /**
  * Created by luciogrimaldi on 15/01/17.
  */
 
-public class RicercaAdapter extends ArrayAdapter<Utente> {
+public class RicercaAdapter extends ArrayAdapter<Campo> {
 
-    Context mContext;
-    int mElementLayout;
+    private Context mContext;
+    private int mElementLayout;
 
     public RicercaAdapter(Context context, int elementLayout){
         super(context, elementLayout);
@@ -34,25 +39,26 @@ public class RicercaAdapter extends ArrayAdapter<Utente> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View element = convertView;
 
-        final Utente currentItem = getItem(position);
+        Campo currentItem = getItem(position);
 
         if (element == null) {
-            LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
             element = inflater.inflate(mElementLayout, parent, false);
         }
 
         element.setTag(currentItem);
-
-        Utente utente = (Utente)getItem(position);
-
+        String nome_s=currentItem.getmNome_s();
+        String nome_c=currentItem.getmNome();
+        String indirizzo=currentItem.getmFK_struttura();
+        Log.d("Debug","ecco le info da inserire:"+nome_c+" "+nome_s+" "+indirizzo);
         TextView textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaRisultati);
-        textViewNomeStruttura.setText(currentItem.getmId());
+        textViewNomeStruttura.setText(nome_s);
 
         TextView textViewNomeCampo = (TextView)element.findViewById(R.id.nomeCampoRisultati);
-        textViewNomeCampo.setText(currentItem.getmId());
+        textViewNomeCampo.setText(nome_c);
 
         TextView textViewIndirizzo = (TextView)element.findViewById(R.id.indirizzoRisultati);
-        textViewIndirizzo.setText(currentItem.getmId());
+        textViewIndirizzo.setText(indirizzo);
 
         Button buttonPrenota = (Button)element.findViewById(R.id.buttonPrenota);
         buttonPrenota.setOnClickListener(new View.OnClickListener() {

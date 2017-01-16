@@ -17,11 +17,11 @@ import com.project.is.sportlink.R;
 
 public class GestoreRegistrationActivity extends AppCompatActivity{
 
-    Button buttonAvantiGestore;
-    EditText editTextNomeGestore;
-    EditText editTextCognomeGestore;
-    EditText editTextEmailGestore;
-    EditText editTextPasswordGestore;
+    private Button buttonAvantiGestore;
+    private EditText editTextNomeGestore;
+    private EditText editTextCognomeGestore;
+    private EditText editTextEmailGestore;
+    private EditText editTextPasswordGestore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

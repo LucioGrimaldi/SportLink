@@ -21,8 +21,8 @@ import com.project.is.sportlink.R;
 
 public class RicercaFragment extends Fragment {
 
-    EditText editTextRicercaCitta;
-    RicercaListener ricercaListener;
+    private EditText editTextRicercaCitta;
+    private RicercaListener ricercaListener;
 
     public RicercaFragment(){
 
@@ -52,6 +52,7 @@ public class RicercaFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+                    HomeActivity.closeKeyboard(getActivity().getApplicationContext(), editTextRicercaCitta.getWindowToken());
                     ricercaListener.effettuaRicerca(getCittaFromEditText());
 
                     return true;

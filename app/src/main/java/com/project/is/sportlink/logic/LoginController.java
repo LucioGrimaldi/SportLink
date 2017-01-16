@@ -34,6 +34,8 @@ public class LoginController {
     private MobileServiceTable<Gestore> mGestoreTable;
     private Context context;
 
+    public LoginController(){}
+
     public LoginController(Context context) {
         this.context = context;
     }
