@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +25,14 @@ public class RicercaFragment extends Fragment {
     EditText editTextRicercaCitta;
     RicercaListener ricercaListener;
 
+
+
     public RicercaFragment(){
 
     }
 
     public interface RicercaListener{
-        public void effettuaRicerca(String s);
+        void effettuaRicerca(String s);
     }
 
     @Override
@@ -46,12 +49,14 @@ public class RicercaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home_ricerca, container, false);
+
         editTextRicercaCitta = (EditText)v.findViewById(R.id.editTextRicercaCitta);
         editTextRicercaCitta.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+                    HomeActivity.closeKeyboard(getActivity().getApplicationContext(), editTextRicercaCitta.getWindowToken());
                     ricercaListener.effettuaRicerca(getCittaFromEditText());
 
                     return true;

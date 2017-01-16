@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.project.is.sportlink.DataModel.Campo;
 import com.project.is.sportlink.DataModel.Utente;
 import com.project.is.sportlink.R;
 
@@ -17,7 +18,7 @@ import com.project.is.sportlink.R;
  * Created by luciogrimaldi on 15/01/17.
  */
 
-public class RicercaAdapter extends ArrayAdapter<Utente> {
+public class RicercaAdapter extends ArrayAdapter<Campo> {
 
     Context mContext;
     int mElementLayout;
@@ -34,7 +35,7 @@ public class RicercaAdapter extends ArrayAdapter<Utente> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View element = convertView;
 
-        final Utente currentItem = getItem(position);
+        final Campo currentItem = getItem(position);
 
         if (element == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -43,13 +44,13 @@ public class RicercaAdapter extends ArrayAdapter<Utente> {
 
         element.setTag(currentItem);
 
-        Utente utente = (Utente)getItem(position);
+        Campo Campo = (Campo)getItem(position);
 
         TextView textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaRisultati);
-        textViewNomeStruttura.setText(currentItem.getmId());
+        textViewNomeStruttura.setText(currentItem.getmNome_s());
 
         TextView textViewNomeCampo = (TextView)element.findViewById(R.id.nomeCampoRisultati);
-        textViewNomeCampo.setText(currentItem.getmId());
+        textViewNomeCampo.setText(currentItem.getmNome());
 
         TextView textViewIndirizzo = (TextView)element.findViewById(R.id.indirizzoRisultati);
         textViewIndirizzo.setText(currentItem.getmId());

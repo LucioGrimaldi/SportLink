@@ -2,14 +2,17 @@ package com.project.is.sportlink.ui;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import com.project.is.sportlink.R;
@@ -22,19 +25,11 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     FragmentTransaction fragmentTransaction;
     ImageView searchHomeButton;
     RisultatiRicercaFragment risultatiRicercaFragment;
-    RicercaAdapter ricercaAdapter;
-    ListView listViewRisultati;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_utente);
-
-        ricercaAdapter = new RicercaAdapter(this, R.layout.list_element_risultati_ricerca);
-        listViewRisultati = (ListView)findViewById(R.id.listViewRisultatiRicerca);
-        listViewRisultati.setAdapter(ricercaAdapter);
-
-        risultatiRicercaFragment = new RisultatiRicercaFragment();
 
         searchHomeButton = (ImageView)findViewById(R.id.search_button_home);
         searchHomeButton.setOnClickListener(new View.OnClickListener() {
@@ -91,11 +86,17 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     }
 
     @Override
-    public void effettuaRicerca(String s) {
+    public void effettuaRicerca(String citta) {
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        risultatiRicercaFragment = new RisultatiRicercaFragment();
         fragmentTransaction.replace(R.id.fragment_container, risultatiRicercaFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public static void closeKeyboard(Context c, IBinder windowToken) {
+        InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(windowToken, 0);
     }
 }
