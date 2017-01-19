@@ -22,8 +22,8 @@ import com.project.is.sportlink.R;
 
 public class RicercaFragment extends Fragment {
 
-    EditText editTextRicercaCitta;
-    RicercaListener ricercaListener;
+    private EditText editTextRicercaCitta;
+    private RicercaListener ricercaListener;
 
 
 

@@ -18,13 +18,13 @@ import java.util.logging.Logger;
 
 public class WelcomeActivity extends AppCompatActivity{
 
-    boolean IS_UTENTE;
-    boolean IS_GESTORE;
-    TextView welcomeMessageTextView;
-    TextView welcomeAnswerMesssageTextView;
-    TextView utenteTextView;
-    TextView gestoreTextView;
-    Logger logger = Logger.getLogger("DEBUG");
+    private boolean IS_UTENTE;
+    private boolean IS_GESTORE;
+    private TextView welcomeMessageTextView;
+    private TextView welcomeAnswerMesssageTextView;
+    private TextView utenteTextView;
+    private TextView gestoreTextView;
+    private Logger logger = Logger.getLogger("DEBUG");
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

@@ -18,15 +18,19 @@ import com.project.is.sportlink.R;
 
 public class StrutturaRegistrationActivity extends AppCompatActivity {
 
-    Button buttonAvantiStruttura;
-    EditText editTextNomeStruttura;
-    EditText editTextTelefonoStruttura;
-    EditText editTextIndirizzoStruttura;
-    EditText editTextCittaStruttura;
-    String nomeGestore;
-    String cognomeGestore;
-    String emailGestore;
-    String passwordGestore;
+    private Button buttonAvantiStruttura;
+    private EditText editTextNomeStruttura;
+    private EditText editTextTelefonoStruttura;
+    private EditText editTextIndirizzoStruttura;
+    private EditText editTextCittaStruttura;
+    private String nomeGestore;
+    private String cognomeGestore;
+    private String emailGestore;
+    private String passwordGestore;
+    private String nome;
+    private String citta;
+    private String telefono;
+    private String indirizzo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,19 +67,19 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
         return passwordGestore;
     }
 
-    public String getNomeStruttura(){
+    public String getNomeStrutturaFromEditText(){
         return editTextNomeStruttura.getText().toString();
     }
 
-    public String getTelefonoStruttura(){
+    public String getTelefonoStrutturaFromEditText(){
         return editTextTelefonoStruttura.getText().toString();
     }
 
-    public String getIndirizzoStruttura(){
+    public String getIndirizzoStrutturaFromEditText(){
         return editTextIndirizzoStruttura.getText().toString();
     }
 
-    public String getCittaStruttura(){
+    public String getCittaStrutturaFromEditText(){
         return editTextCittaStruttura.getText().toString();
     }
 
@@ -91,16 +95,52 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
         return myeditText.getText().toString().trim().length() == 0;
     }
     public void openCampoSignUpForm(){
+        nome=getNomeStrutturaFromEditText();
+        citta=getCittaStrutturaFromEditText();
+        indirizzo=getIndirizzoStrutturaFromEditText();
+        telefono=getTelefonoStrutturaFromEditText();
+
         Intent i = new Intent(this, CampoRegistrationActivity.class);
         i.putExtra("NOME_GESTORE", getNomeGestore());
         i.putExtra("COGNOME_GESTORE", getCognomeGestore());
         i.putExtra("EMAIL_GESTORE", getEmailGestore());
         i.putExtra("PASSWORD_GESTORE", getPasswordGestore());
-        Log.d("Debug",getNomeStruttura());
-        i.putExtra("NOME_STRUTTURA", getNomeStruttura());
-        i.putExtra("TELEFONO_STRUTTURA", getTelefonoStruttura());
-        i.putExtra("INDIRIZZO_STRUTTURA", getIndirizzoStruttura());
-        i.putExtra("CITTA_STRUTTURA", getCittaStruttura());
+        i.putExtra("NOME_STRUTTURA", getNomeStrutturaFromEditText());
+        i.putExtra("TELEFONO_STRUTTURA", getTelefonoStrutturaFromEditText());
+        i.putExtra("INDIRIZZO_STRUTTURA", getIndirizzoStrutturaFromEditText());
+        i.putExtra("CITTA_STRUTTURA", getCittaStrutturaFromEditText());
         startActivity(i);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 }

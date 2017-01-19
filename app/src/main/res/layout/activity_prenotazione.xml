@@ -38,26 +38,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.9"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:padding="15dp">
 
 
         <TextView
-            android:id="@+id/nomeCampoRisultati"
+            android:id="@+id/textViewNomeCampoRisultati"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome Campo"
             android:textSize="18sp"
             android:gravity="center_vertical"/>
         <TextView
-            android:id="@+id/nomeStrutturaRisultati"
+            android:id="@+id/textViewNomeStrutturaRisultati"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome Struttura"
             android:textSize="15sp"/>
         <TextView
-            android:id="@+id/indirizzoRisultati"
+            android:id="@+id/textViewIndirizzoRisultati"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Via roma 3 salerno"
@@ -68,20 +68,77 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data:"
+                    android:textSize="20dp"
+                    android:paddingLeft="10dp"/>
+                <TextView
+                    android:id="@+id/textViewDataSelezionata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp">
+                <Button
+                    android:id="@+id/button_seleziona_data"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:text="Seleziona data"
+                    android:onClick="mostraDatePickerDialog"
+                    android:textColor="#ffff"
+                    android:background="@drawable/button_login_shape" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orario:"
+                android:textSize="20dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:gravity="center">
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-    </LinearLayout>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Prenota"
+            android:textColor="#ffff"
+            android:background="@drawable/button_login_shape" />
+    </RelativeLayout>
 
 </LinearLayout>
