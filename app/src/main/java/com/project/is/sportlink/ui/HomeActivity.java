@@ -1,5 +1,6 @@
 package com.project.is.sportlink.ui;
 
+import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -31,8 +32,6 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_utente);
-
-
 
         risultatiRicercaFragment = new RisultatiRicercaFragment();
 
@@ -98,6 +97,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         editor.commit();
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        risultatiRicercaFragment = new RisultatiRicercaFragment();
         fragmentTransaction.replace(R.id.fragment_container, risultatiRicercaFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -107,4 +107,5 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(windowToken, 0);
     }
+
 }

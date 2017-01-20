@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RisultatiRicercaFragment extends Fragment {
 
+
     private RicercaAdapter ricercaAdapter;
     private ListView listViewRisultati;
     private MobileServiceClient mClient;
@@ -52,6 +53,7 @@ public class RisultatiRicercaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_risultati_ricerca, container, false);
+
         ricercaAdapter = new RicercaAdapter(getActivity().getApplicationContext(), R.layout.list_element_risultati_ricerca);
         listViewRisultati = (ListView)v.findViewById(R.id.listViewRisultatiRicerca);
         listViewRisultati.setAdapter(ricercaAdapter);

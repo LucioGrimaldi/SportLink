@@ -28,11 +28,16 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
     private Context mContext;
     private int mElementLayout;
 
+
     public RicercaAdapter(Context context, int elementLayout){
         super(context, elementLayout);
 
         mContext = context;
         mElementLayout = elementLayout;
+    }
+
+    public interface OnClickPrenotaListener{
+        void apriPrenotazioneCampo();
     }
 
     @NonNull
@@ -48,9 +53,9 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
         }
 
         element.setTag(currentItem);
-        String nome_s=currentItem.getmNome_s();
-        String nome_c=currentItem.getmNome();
-        String indirizzo=currentItem.getmFK_struttura();
+        final String nome_s=currentItem.getmNome_s();
+        final String nome_c=currentItem.getmNome();
+        final String indirizzo=currentItem.getmFK_struttura();
         Log.d("Debug","ecco le info da inserire:"+nome_c+" "+nome_s+" "+indirizzo);
         TextView textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaRisultati);
         textViewNomeStruttura.setText(nome_s);
@@ -65,8 +70,13 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
         buttonPrenota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(),PrenotazioneActivity.class);
 
+                Intent i = new Intent(v.getContext(), PrenotazioneActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("NOME_CAMPO", nome_c);
+                i.putExtra("NOME_STRUTTURA", nome_s);
+                i.putExtra("INDIRIZZO", indirizzo);
+                v.getContext().startActivity(i);
 
             }
         });
