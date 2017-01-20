@@ -142,9 +142,9 @@ public class GestoreRegistrationController {
                             return 1;
                         }else if(result_g.isEmpty() && result_c.isEmpty()){
                             Struttura temp = result_s.get(0);
-                            String temp2 = temp.getmId();
-                            g.setmFK_struttura(temp2);
-                            c.setmFK_struttura(temp2);
+                            g.setmFK_struttura(temp.getmId());
+                            c.setmFK_struttura(temp.getmId());
+                            c.setmIndirizzo_s(temp.getmIndirizzo());
                             inserisciGestore(g);
                             inserisciCampo(c);
                             return 2;
