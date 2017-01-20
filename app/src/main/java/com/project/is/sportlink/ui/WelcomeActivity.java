@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.PrenotazioneController;
 
 import java.util.logging.Logger;
 

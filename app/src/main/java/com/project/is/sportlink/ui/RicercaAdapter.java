@@ -77,6 +77,7 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
                 i.putExtra("NOME_STRUTTURA", nome_s);
                 i.putExtra("INDIRIZZO", indirizzo);
                 v.getContext().startActivity(i);
+
             }
         });
 

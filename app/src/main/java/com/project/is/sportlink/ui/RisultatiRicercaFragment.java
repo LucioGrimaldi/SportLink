@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
@@ -24,6 +25,7 @@ import com.squareup.okhttp.OkHttpClient;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -73,6 +75,9 @@ public class RisultatiRicercaFragment extends Fragment {
                     client.setReadTimeout(20, TimeUnit.SECONDS);
                     client.setWriteTimeout(20, TimeUnit.SECONDS);
                     return client;
+
+
+
                 }
             });
 
@@ -112,13 +117,18 @@ public class RisultatiRicercaFragment extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
+                dialog = new ProgressDialog(getActivity());
+                dialog.setMessage("Please wait...");
+                dialog.setIndeterminate(true);
+                dialog.show();
             }
+
 
             @Override
             protected Void doInBackground(Void... params) {
 
                 try {
+                    risultati.clear();
                     final List<Struttura> results = ricercaStrutture(città);
 
                     for (Struttura i:
@@ -135,6 +145,11 @@ public class RisultatiRicercaFragment extends Fragment {
                             for (Campo item : risultati) {
                                 ricercaAdapter.add(item);
                             }
+                            if(ricercaAdapter.isEmpty()) {
+                                Toast toast = Toast.makeText(getActivity().getApplicationContext(),"La tua ricerca non ha prodotto risultati.",Toast.LENGTH_LONG);
+                                toast.show();
+
+                            }
                         }
                     });
 
@@ -148,6 +163,9 @@ public class RisultatiRicercaFragment extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
+                if(dialog.isShowing()){
+                    dialog.dismiss();
+                }
             }
         };
 
