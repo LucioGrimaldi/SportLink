@@ -1,5 +1,7 @@
 package com.project.is.sportlink.ui;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +14,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.project.is.sportlink.R;
+import com.project.is.sportlink.logic.PrenotazioneController;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,10 +35,13 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     private TextView textViewNomeStrutturaRisultati;
     private TextView textViewIndirizzoRisultati;
     private String nomeCampo;
+    private String id_c;
     private String nomeStruttura;
     private String indirizzo;
     private Spinner spinnerOrari;
     private Logger logger;
+    private PrenotazioneController controller;
+    private List<String> orariDisponibili=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         textViewIndirizzoRisultati = (TextView)findViewById(R.id.textViewIndirizzoRisultati);
 
         Intent i = getIntent();
+        id_c=i.getStringExtra("ID_CAMPO");
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
@@ -71,9 +80,10 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
             public void onClick(View v) {
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
                 datePickerFragment.show(getFragmentManager(),"datePickerFragment");
+
             }
         });
-
+        createSpinnerContentFromArray(spinnerOrari, orariDisponibili);
     }
 
     @Override
@@ -127,3 +137,5 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
     }
 }
+
+

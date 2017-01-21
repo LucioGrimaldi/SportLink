@@ -87,15 +87,9 @@ public class PrenotazioneController {
     public void impostaOrariDisponibiliComboBox(final String data_p,final String FK_campo){
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>(){
 
-            ProgressDialog dialog;
-
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(context);
-                dialog.setMessage("Please wait...");
-                dialog.setIndeterminate(true);
-                dialog.show();
             }
 
             @Override
@@ -131,9 +125,6 @@ public class PrenotazioneController {
             @Override
             protected void onPostExecute(Integer r) {
                 super.onPostExecute(r);
-                if(dialog.isShowing()){
-                    dialog.dismiss();
-                }
                 if(r==1){
                 Toast toast=Toast.makeText(context,"non è sono stati trovati orari disponibili per il giorno selezionato!",Toast.LENGTH_LONG);
                 toast.show();
@@ -151,15 +142,10 @@ public class PrenotazioneController {
     //questo metodo registra in modo effettivo la nuova registrazione sul db effettuando la richiesta al server.Produce un toast che indica se l'operazione è andata a buon fine.
     public void registazioneNuovaPrenotazione(final String data_p, final String FK_utente, final String FK_campo, final String orario) {
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
-            ProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(context);
-                dialog.setMessage("Please wait...");
-                dialog.setIndeterminate(true);
-                dialog.show();
             }
 
             @Override
@@ -179,9 +165,6 @@ public class PrenotazioneController {
             @Override
             protected void onPostExecute(Integer r) {
                 super.onPostExecute(r);
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
                 if(r==2){
                     Toast toast=Toast.makeText(context,"La tua registrazione è stata completata con successo!",Toast.LENGTH_LONG);
                     toast.show();
