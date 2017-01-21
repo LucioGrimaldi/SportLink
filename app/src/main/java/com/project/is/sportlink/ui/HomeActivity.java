@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -27,6 +28,8 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private FragmentTransaction fragmentTransaction;
     private ImageView searchHomeButton;
     private RisultatiRicercaFragment risultatiRicercaFragment;
+    private String mIdUtente;
+    private String mIdGestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
             }
         });
 
+        mIdUtente=getIntent().getStringExtra("UTENTE_ID");
+        mIdGestore=getIntent().getStringExtra("GESTORE_ID");
         //Visualizza il fragment iniziale nella home
         setFragmentHome();
 
@@ -94,6 +99,9 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("città",città);
+        Log.d("Debug",mIdUtente+" "+mIdGestore);
+        if(mIdUtente!=null){editor.putString("UTENTE_ID",mIdUtente);}
+        if(mIdGestore!=null){editor.putString("GESTORE_ID",mIdGestore);}
         editor.commit();
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();

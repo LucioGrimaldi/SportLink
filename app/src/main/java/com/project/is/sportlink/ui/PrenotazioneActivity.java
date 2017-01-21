@@ -3,16 +3,23 @@ package com.project.is.sportlink.ui;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.project.is.sportlink.R;
 import com.project.is.sportlink.logic.PrenotazioneController;
 
@@ -38,6 +45,9 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     private String id_c;
     private String nomeStruttura;
     private String indirizzo;
+    private String mIdUtente;
+    private String orarioPrenotazione;
+    private String dataSelezionata;
     private Spinner spinnerOrari;
     private Logger logger;
     private PrenotazioneController controller;
@@ -67,6 +77,10 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        mIdUtente=sharedPref.getString("UTENTE_ID",null);
+
+        controller= new PrenotazioneController(this);
 
         textViewNomeCampoRisultati.setText(nomeCampo);
         textViewNomeStrutturaRisultati.setText(nomeStruttura);
@@ -83,7 +97,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
             }
         });
-        createSpinnerContentFromArray(spinnerOrari, orariDisponibili);
+        createSpinnerContentFromArray(spinnerOrari,orariDisponibili);
     }
 
     @Override
@@ -113,8 +127,11 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 */
     public void effettuaPrentazione(View v){
 
-        logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo());
 
+        String text = spinnerOrari.getSelectedItem().toString();
+        logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+text);
+
+        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,text);
     }
 
     public void createSpinnerContentFromArray(Spinner spinner, List<String> arrayListResorce){
@@ -122,17 +139,18 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayListResorce);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
     }
 
     @Override
     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
         //Aggiungere +1 al mese perchè parte da 0
-        String dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
+        dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
         logger.info("DATA SELEZIONATA = " + dataSelezionata);
         textViewDataSelezionata.setText(dataSelezionata);
-
+        controller.impostaOrariDisponibiliComboBox(dataSelezionata,id_c);
+        orariDisponibili=controller.getOrariDisp();
+        createSpinnerContentFromArray(spinnerOrari,orariDisponibili);
 
 
     }
