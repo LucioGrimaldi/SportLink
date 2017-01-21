@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  * Created by luciogrimaldi on 15/01/17.
  */
 
-public class PrenotazioneActivity extends AppCompatActivity {
+public class PrenotazioneActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener{
 
     private ImageButton backFromPrenotazioneButton;
     private Button buttonSelezionaData;
@@ -73,36 +74,6 @@ public class PrenotazioneActivity extends AppCompatActivity {
             }
         });
 
-
-        //Arraylist di prova per verifica dello spinner
-        ArrayList<String> arrayListDiProva = new ArrayList<String>();
-        arrayListDiProva.add("prova1");
-        arrayListDiProva.add("prova2");
-        arrayListDiProva.add("prova3");
-        arrayListDiProva.add("prova4");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-        arrayListDiProva.add("prova5");
-
-        createSpinnerContentFromArray(spinnerOrari, arrayListDiProva);
-
-
-
-
     }
 
     @Override
@@ -141,6 +112,18 @@ public class PrenotazioneActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayListResorce);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+        //Aggiungere +1 al mese perchè parte da 0
+        String dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
+        logger.info("DATA SELEZIONATA = " + dataSelezionata);
+        textViewDataSelezionata.setText(dataSelezionata);
+
+
 
     }
 }
