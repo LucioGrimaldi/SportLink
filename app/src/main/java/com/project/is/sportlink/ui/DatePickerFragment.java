@@ -27,6 +27,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     private int selectedDay;
     private Calendar currentDate;
     private Calendar selectedDate;
+    private Dialog datePickerView;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -38,8 +39,14 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         currentDate = Calendar.getInstance();
         currentDate.set(currentYear, currentMonth, currentDay);
 
-        return new DatePickerDialog(getActivity(), this, currentYear, currentMonth, currentDay);
+        datePickerView = new DatePickerDialog(getActivity(), this, currentYear, currentMonth, currentDay);
 
+        return datePickerView;
+
+    }
+
+    public interface OnDateSetListener{
+        void onDateSet(String s);
     }
 
     @Override
@@ -54,10 +61,16 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
         if (selectedDate.before(currentDate)) {
             Toast.makeText(getActivity().getApplicationContext(), "La data che ha inserito non è valida.", Toast.LENGTH_LONG).show();
-        } else {
-            // non so perchè ma si deve aggiungere +1 al numero del mese
+        }
+        else {
+
+            DatePicker.OnDateChangedListener prenotazioneActivity = (DatePicker.OnDateChangedListener) getActivity();
+            prenotazioneActivity.onDateChanged(view, selectedYear, selectedMonth, selectedDay);
+
+ /*           // non so perchè ma si deve aggiungere +1 al numero del mese
             TextView dataSelezionata = (TextView) getActivity().findViewById(R.id.textViewDataSelezionata);
             dataSelezionata.setText(view.getDayOfMonth() + "/" + view.getMonth() + 1 + "/" + view.getYear());
+  */
         }
     }
 }
