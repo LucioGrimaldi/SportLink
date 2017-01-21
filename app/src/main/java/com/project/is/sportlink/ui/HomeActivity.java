@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private ImageView searchHomeButton;
+    private HomeFragment homeFragment;
     private RisultatiRicercaFragment risultatiRicercaFragment;
     private String mIdUtente;
     private String mIdGestore;
@@ -66,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        HomeFragment homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.fragment_container, homeFragment);
         fragmentTransaction.commit();
     }
@@ -90,8 +91,17 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            if(homeFragment.isVisible()) {
+
+            }
+            else{
+                super.onBackPressed();
+            }
             super.onBackPressed();
+            return;
         }
+
+
     }
 
     @Override

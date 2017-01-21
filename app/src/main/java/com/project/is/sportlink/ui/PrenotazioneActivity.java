@@ -80,6 +80,8 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         mIdUtente=sharedPref.getString("UTENTE_ID",null);
 
+
+
         textViewNomeCampoRisultati.setText(nomeCampo);
         textViewNomeStrutturaRisultati.setText(nomeStruttura);
         textViewIndirizzoRisultati.setText(indirizzo);
@@ -95,6 +97,8 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
             }
         });
+
+        logger.info("------ONCREATE------");
         createSpinnerContentFromArray(spinnerOrari,orariDisponibili);
     }
 
@@ -146,10 +150,17 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
         logger.info("DATA SELEZIONATA = " + dataSelezionata);
         textViewDataSelezionata.setText(dataSelezionata);
+
         controller= new PrenotazioneController(this);
+
         controller.impostaOrariDisponibiliComboBox(dataSelezionata,id_c);
-        orariDisponibili=controller.getOrariDisp();
+
+        orariDisponibili = controller.getOrariDisp();
+
+        logger.info("ORARI_DISPONIBILI = " + orariDisponibili.size());
+
         createSpinnerContentFromArray(spinnerOrari,orariDisponibili);
+
 
 
     }

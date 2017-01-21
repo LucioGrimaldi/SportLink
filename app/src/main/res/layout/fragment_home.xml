@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textSize="42sp"
-            android:text="Effettua le ricerca inserendo la tua città!"/>
+            android:text="Effettua le ricerche inserendo la tua città!"/>
 
     </RelativeLayout>
 
