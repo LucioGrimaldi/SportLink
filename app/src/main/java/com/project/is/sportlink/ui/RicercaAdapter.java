@@ -53,9 +53,10 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
         }
 
         element.setTag(currentItem);
+        final String id_c=currentItem.getmId();
         final String nome_s=currentItem.getmNome_s();
         final String nome_c=currentItem.getmNome();
-        final String indirizzo=currentItem.getmFK_struttura();
+        final String indirizzo=currentItem.getmIndirizzo_s();
         Log.d("Debug","ecco le info da inserire:"+nome_c+" "+nome_s+" "+indirizzo);
         TextView textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaRisultati);
         textViewNomeStruttura.setText(nome_s);
@@ -73,6 +74,7 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
 
                 Intent i = new Intent(v.getContext(), PrenotazioneActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("ID_CAMPO",id_c);
                 i.putExtra("NOME_CAMPO", nome_c);
                 i.putExtra("NOME_STRUTTURA", nome_s);
                 i.putExtra("INDIRIZZO", indirizzo);

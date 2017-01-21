@@ -16,7 +16,7 @@ import java.util.Date;
  * Created by luciogrimaldi on 18/01/17.
  */
 
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     private Calendar calendar;
     private int currentYear;
@@ -52,10 +52,9 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         selectedDate = Calendar.getInstance();
         selectedDate.set(selectedYear, selectedMonth, selectedDay);
 
-        if (selectedDate.before(currentDate)){
+        if (selectedDate.before(currentDate)) {
             Toast.makeText(getActivity().getApplicationContext(), "La data che ha inserito non è valida.", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             // non so perchè ma si deve aggiungere +1 al numero del mese
             TextView dataSelezionata = (TextView) getActivity().findViewById(R.id.textViewDataSelezionata);
             dataSelezionata.setText(view.getDayOfMonth() + "/" + view.getMonth() + 1 + "/" + view.getYear());
