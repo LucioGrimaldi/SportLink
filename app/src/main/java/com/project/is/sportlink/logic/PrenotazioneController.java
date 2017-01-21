@@ -35,7 +35,7 @@ public class PrenotazioneController {
     Context context;
     MobileServiceTable<Prenotazione> mPrenotazioneTable;
     List<String> orariFinali=new ArrayList<>();
-    ArrayList<String> orariDisp=new ArrayList<>();
+    List<String> orariDisp=new ArrayList<>();
     ArrayList<String> helper=new ArrayList<>();
 
     public PrenotazioneController (Context context){
@@ -87,9 +87,15 @@ public class PrenotazioneController {
     public void impostaOrariDisponibiliComboBox(final String data_p,final String FK_campo){
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>(){
 
+            ProgressDialog dialog;
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                dialog = new ProgressDialog(context);
+                dialog.setMessage("Please wait...");
+                dialog.setIndeterminate(true);
+                dialog.show();
             }
 
             @Override
@@ -98,13 +104,14 @@ public class PrenotazioneController {
                 try {
                     List<Prenotazione> results=mPrenotazioneTable.where().field("data_p").eq(data_p).and().field("FK_campo").eq(FK_campo).execute().get();
 
+                    for (int i = 0; i < orari.length; i++) {
+                        orariDisp.add(orari[i]);
+                        helper.add(orari[i]);
+                    }
+
                     if(results.isEmpty()){
                         return 1;
                     }else {
-                        for (int i = 0; i < orari.length; i++) {
-                            orariDisp.add(orari[i]);
-                            helper.add(orari[i]);
-                        }
                         for (Prenotazione a : results) {
                             String orarioTemp = a.getmOrario();
                             for (String i : helper) {
@@ -113,7 +120,6 @@ public class PrenotazioneController {
                                 }
                             }
                         }
-                        orariFinali.addAll(orariDisp);
                         return 2;
                     }
                 } catch (final Exception e){
@@ -125,7 +131,8 @@ public class PrenotazioneController {
             @Override
             protected void onPostExecute(Integer r) {
                 super.onPostExecute(r);
-                if(r==1){
+                if(dialog.isShowing()){dialog.dismiss();}
+                if(r==1&&orariDisp.isEmpty()){
                 Toast toast=Toast.makeText(context,"non è sono stati trovati orari disponibili per il giorno selezionato!",Toast.LENGTH_LONG);
                 toast.show();
                 }else{
@@ -190,11 +197,7 @@ public class PrenotazioneController {
         }
     }
 
-    public List<String> getOrariFinali() {
-        return orariFinali;
-    }
-
-    public void setOrariFinali(List<String> orariFinali) {
-        this.orariFinali = orariFinali;
+    public List<String> getOrariDisp() {
+        return orariDisp;
     }
 }
