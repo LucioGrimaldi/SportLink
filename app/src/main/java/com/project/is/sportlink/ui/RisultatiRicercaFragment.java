@@ -42,7 +42,7 @@ public class RisultatiRicercaFragment extends Fragment {
     private MobileServiceClient mClient;
     private MobileServiceTable<Struttura> mStrutturaTable;
     private MobileServiceTable<Campo> mCampoTable;
-    private String città;
+    private String città,utenteId;
     private List<Campo> risultati= new ArrayList<>();
 
     public RisultatiRicercaFragment(){
@@ -59,6 +59,8 @@ public class RisultatiRicercaFragment extends Fragment {
         listViewRisultati.setAdapter(ricercaAdapter);
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         città=sharedPref.getString("città",null);
+        utenteId=sharedPref.getString("UTENTE_ID",null);
+
 
         try {
             // Create the Mobile Service Client instance, using the provided
@@ -78,12 +80,14 @@ public class RisultatiRicercaFragment extends Fragment {
 
 
 
+
                 }
             });
 
             mStrutturaTable=mClient.getTable("Struttura",Struttura.class);
             mCampoTable=mClient.getTable("Campo",Campo.class);
             ricercaRequest();
+            Log.d("debug",utenteId+" ");
 
 
         }catch (MalformedURLException e){
