@@ -1,10 +1,8 @@
 package com.project.is.sportlink.ui;
 
-import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -17,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import com.project.is.sportlink.R;
 import java.util.logging.Logger;
 
@@ -98,7 +95,6 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
                 super.onBackPressed();
             }
             super.onBackPressed();
-            return;
         }
 
 
@@ -106,13 +102,15 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
 
     @Override
     public void effettuaRicerca(String città) {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("città",città);
         Log.d("Debug",mIdUtente+" "+mIdGestore);
         editor.putString("UTENTE_ID",mIdUtente);
+        logger.info("ID_UTENTE = " + mIdUtente);
         editor.putString("GESTORE_ID",mIdGestore);
-        editor.commit();
+        editor.apply();
+        sharedPref.contains("UTENTE_ID");
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         risultatiRicercaFragment = new RisultatiRicercaFragment();

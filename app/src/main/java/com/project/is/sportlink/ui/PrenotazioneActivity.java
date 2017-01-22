@@ -53,11 +53,13 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     private String dataSelezionata;
     private Spinner spinnerOrari;
     private Logger logger;
-    private String[] orari= new String[]{"09:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00"};
+    private String[] orari= new String[]{"09:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00",
+            "14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00", "20:00-21:00",
+            "21:00-22:00","22:00-23:00","23:00-24:00"};
     private MobileServiceClient mClient;
     private MobileServiceTable<Prenotazione> mPrenotazioneTable;
-    private List<String> orariDisp=new ArrayList<>();
-    private ArrayList<String> helper=new ArrayList<>();
+    private List<String> orariDisp = new ArrayList<>();
+    private ArrayList<String> helper = new ArrayList<>();
     private Context context;
 
     @Override
@@ -84,9 +86,10 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         id_c=i.getStringExtra("ID_CAMPO");
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
-        indirizzo = i.getStringExtra("INDIRIZZO");
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        mIdUtente=sharedPref.getString("UTENTE_ID",null);
+        //indirizzo = i.getStringExtra("INDIRIZZO");
+
+        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        mIdUtente = sharedPref.getString("UTENTE_ID",null);
         Log.d("debug",mIdUtente+" ");
 
         try {
@@ -173,6 +176,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     @Override
     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
+
         //Aggiungere +1 al mese perchè parte da 0
         dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
         logger.info("DATA SELEZIONATA = " + dataSelezionata);
@@ -190,6 +194,9 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+
+                //Elimina i precendenti risultati
+                orariDisp.clear();
                 dialog = new ProgressDialog(context);
                 dialog.setMessage("Please wait...");
                 dialog.setIndeterminate(true);
