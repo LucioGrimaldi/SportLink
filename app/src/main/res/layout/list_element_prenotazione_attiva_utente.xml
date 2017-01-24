@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="115dp"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="#ffff"
+        android:elevation="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/default_placeholder"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/nomeStrutturaPrenotazione"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Nome Struttura"
+                android:textSize="18sp"
+                android:textColor="#424242"/>
+            <TextView
+                android:id="@+id/nomeCampoPrenotazione"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Nome Campo"
+                android:textSize="15sp"
+                android:textColor="#424242"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/dataPrenotazione"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="gg/mm/aaaa"
+                android:textSize="13sp"
+                android:textColor="#424242"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/orarioPrenotazione"
+                android:text="11:00-12:00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/buttonDisdici"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DISDICI"
+                android:onClick=""
+                android:textColor="#d50000"
+                android:background="#ffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

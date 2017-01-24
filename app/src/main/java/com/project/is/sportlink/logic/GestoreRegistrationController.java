@@ -70,6 +70,7 @@ public class GestoreRegistrationController {
             newCampo= new Campo();
             newCampo.setmNome(nome_c);
             newCampo.setmSport(sport_c);
+            newCampo.setmNome_s(nome_s);
 
 
             newGestore =new Gestore();
@@ -93,7 +94,6 @@ public class GestoreRegistrationController {
 
     public void inserisciGestore(Gestore gestore)throws MobileServiceException,ExecutionException,InterruptedException{
         mGestoreTable.insert(gestore).get();
-
     }
 
     public List<Gestore> riceviInfoGestoriRegistrati(String email)throws MobileServiceException,ExecutionException,InterruptedException{
@@ -102,7 +102,6 @@ public class GestoreRegistrationController {
 
     public void inserisciStruttura(Struttura struttura)throws MobileServiceException,ExecutionException,InterruptedException{
         mStrutturaTable.insert(struttura).get();
-
     }
 
     public List<Struttura> riceviInfoStruttureRegistrate(String nome_s)throws MobileServiceException,ExecutionException,InterruptedException{
@@ -111,7 +110,6 @@ public class GestoreRegistrationController {
 
     public void inserisciCampo(Campo campo)throws MobileServiceException,ExecutionException,InterruptedException{
         mCampoTable.insert(campo).get();
-
     }
     public List<Campo> riceviInfoCampiRegistrati(String nome_c)throws MobileServiceException,ExecutionException,InterruptedException{
         return mCampoTable.where().field("nome_c").eq(nome_c).execute().get();}
@@ -143,11 +141,10 @@ public class GestoreRegistrationController {
                         if(result_s.isEmpty()){
                             return 1;
                         }else if(result_g.isEmpty() && result_c.isEmpty()){
-                            Log.d("debug","arrivo anche nell'else if!");
                             Struttura temp = result_s.get(0);
-                            String temp2 = temp.getmId();
-                            g.setmFK_struttura(temp2);
-                            c.setmFK_struttura(temp2);
+                            g.setmFK_struttura(temp.getmId());
+                            c.setmFK_struttura(temp.getmId());
+                            c.setmIndirizzo_s(temp.getmIndirizzo());
                             inserisciGestore(g);
                             inserisciCampo(c);
                             return 2;

@@ -3,6 +3,7 @@ package com.project.is.sportlink.logic;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,10 @@ public class LoginController {
     private MobileServiceTable<Utente> mUtenteTable;
     private MobileServiceTable<Gestore> mGestoreTable;
     private Context context;
+    private Utente u;
+    private Gestore g;
+
+    public LoginController(){}
 
     public LoginController(Context context) {
         this.context = context;
@@ -105,6 +110,9 @@ public class LoginController {
                     if(results.isEmpty()){
                         return 1;
                     }else{
+                        for (Utente i:results){
+                            u=i;
+                        }
                         return 2;
                     }
                 } catch (final Exception e){
@@ -125,6 +133,9 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",true);
+                    intent.putExtra("IS_GESTORE",false);
+                    intent.putExtra("UTENTE_ID",u.getmId());
                     context.startActivity(intent);
                 }
 
@@ -163,6 +174,9 @@ public class LoginController {
                     if(results.isEmpty()){
                         return 1;
                     }else{
+                        for (Gestore i:results){
+                            g=i;
+                        }
                         return 2;
                     }
                 } catch (final Exception e){
@@ -183,6 +197,9 @@ public class LoginController {
                     toast.show();
                 }else{
                     Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("IS_UTENTE",false);
+                    intent.putExtra("IS_GESTORE",true);
+                    intent.putExtra("GESTORE_ID",g.getmId());
                     context.startActivity(intent);
                 }
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.is.sportlink.DataModel.Struttura;
 import com.project.is.sportlink.R;
 import com.project.is.sportlink.logic.GestoreRegistrationController;
 
@@ -23,18 +25,20 @@ import com.project.is.sportlink.logic.GestoreRegistrationController;
 
 public class CampoRegistrationActivity extends AppCompatActivity {
 
-    Button buttonSignUp;
-    EditText editTextNomeCampo;
-    Spinner spinner;
-    String nomeGestore;
-    String cognomeGestore;
-    String emailGestore;
-    String passwordGestore;
-    String nomeStruttura;
-    String telefonoStruttura;
-    String indirizzoStruttura;
-    String cittaStruttura;
-    GestoreRegistrationController controller;
+    private Button buttonSignUp;
+    private EditText editTextNomeCampo;
+    private Spinner spinner;
+    private String nomeGestore;
+    private String cognomeGestore;
+    private String emailGestore;
+    private String passwordGestore;
+    private String nomeStruttura;
+    private String telefonoStruttura;
+    private String indirizzoStruttura;
+    private String cittaStruttura;
+    private GestoreRegistrationController controller;
+    private String nome;
+    private String sport;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +71,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
         cognomeGestore = i.getStringExtra("COGNOME_GESTORE");
         emailGestore =  i.getStringExtra("EMAIL_GESTORE");
         passwordGestore = i.getStringExtra("PASSWORD_GESTORE");
-        nomeStruttura = i.getStringExtra("NOME_STRUTTUA");
+        nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         telefonoStruttura = i.getStringExtra("TELEFONO_STRUTTURA");
         indirizzoStruttura = i.getStringExtra("INDIRIZZO_STRUTTURA");
         cittaStruttura = i.getStringExtra("CITTA_STRUTTURA");
@@ -120,6 +124,8 @@ public class CampoRegistrationActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Per favore inserire tutti i campi", Toast.LENGTH_SHORT).show();
         }
         else {
+            nome=editTextNomeCampo.getText().toString();
+            sport=spinner.getSelectedItem().toString();
             signUpGestore();
         }
     }
@@ -129,7 +135,24 @@ public class CampoRegistrationActivity extends AppCompatActivity {
 
     private void signUpGestore(){
         controller= new GestoreRegistrationController(this);
-        controller.GestoreRegistrationRequest(nomeGestore,cognomeGestore,emailGestore,passwordGestore,nomeStruttura,telefonoStruttura,indirizzoStruttura,cittaStruttura,getNomeCampo(),getTipoSport());
+        Log.d("Prova","nome struttura"+getNomeStruttura());
+        controller.GestoreRegistrationRequest(getNomeGestore(),getCognomeGestore(),getEmailGestore(),getPasswordGestore(),getNomeStruttura(),getTelefonoStruttura(),getIndirizzoStruttura(),getCittaStruttura(),getNomeCampo(),getTipoSport());
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
     }
 }
 
