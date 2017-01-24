@@ -58,6 +58,11 @@
 
         </activity>
 
+        <activity android:name=".ui.DisdettaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.project.is.sportlink.R;
 import java.util.logging.Logger;
 
@@ -24,8 +26,8 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private ImageView searchHomeButton;
+    private TextView textViewVisualizzazionePrenotazioniUtente;
     private HomeFragment homeFragment;
-    private RisultatiRicercaFragment risultatiRicercaFragment;
     private String mIdUtente;
     private String mIdGestore;
 
@@ -34,14 +36,20 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_utente);
 
-        risultatiRicercaFragment = new RisultatiRicercaFragment();
-
         searchHomeButton = (ImageView)findViewById(R.id.search_button_home);
         searchHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logger.info("ON CLICK SEARCH BUTTON");
                 setFragmentRicerca();
+            }
+        });
+
+        textViewVisualizzazionePrenotazioniUtente = (TextView)findViewById(R.id.text_view_visualizza_prenotazioni_utente);
+        textViewVisualizzazionePrenotazioniUtente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragmentVisualizzaPrenotazioni();
             }
         });
 
@@ -63,17 +71,29 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     public void setFragmentHome(){
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-
         homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.fragment_container, homeFragment);
         fragmentTransaction.commit();
     }
 
-    public void setFragmentRicerca(){
-
+    public void setFragmentVisualizzaPrenotazioni(){
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        //Visualizzazione del fragment per vedere le prenotazioni attive dell'utente nella home
+        VisualizzaPrenotazioniFragment visualizzaPrenotazioniFragment = new VisualizzaPrenotazioniFragment();
+        fragmentTransaction.replace(R.id.fragment_container, visualizzaPrenotazioniFragment);
+        fragmentTransaction.addToBackStack(null);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        fragmentTransaction.commit();
 
+    }
+
+    public void setFragmentRicerca(){
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
         //Visualizzazione del fragment contenente la ricerca della città
         RicercaFragment ricercaFragment = new RicercaFragment();
         fragmentTransaction.replace(R.id.fragment_container, ricercaFragment);
@@ -88,12 +108,6 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(homeFragment.isVisible()) {
-
-            }
-            else{
-                super.onBackPressed();
-            }
             super.onBackPressed();
         }
 
@@ -113,7 +127,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         sharedPref.contains("UTENTE_ID");
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        risultatiRicercaFragment = new RisultatiRicercaFragment();
+        RisultatiRicercaFragment risultatiRicercaFragment = new RisultatiRicercaFragment();
         fragmentTransaction.replace(R.id.fragment_container, risultatiRicercaFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

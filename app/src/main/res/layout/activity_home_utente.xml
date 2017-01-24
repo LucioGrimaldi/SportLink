@@ -27,13 +27,7 @@
 
             <include layout="@layout/nav_header_home"></include>
 
-
-        <ListView
-            android:id="@+id/drawer_utente_listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ListView>
+            <include layout="@layout/option_menu_utente"></include>
 
         </LinearLayout>
 

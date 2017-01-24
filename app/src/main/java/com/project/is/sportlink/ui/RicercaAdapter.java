@@ -37,10 +37,6 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
         mElementLayout = elementLayout;
     }
 
-    public interface OnClickPrenotaListener{
-        void apriPrenotazioneCampo();
-    }
-
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
