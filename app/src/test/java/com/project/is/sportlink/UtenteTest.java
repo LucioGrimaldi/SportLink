@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
  * Created by bitol on 13/01/2017.
  */
 
-public class Utente_test{
+public class UtenteTest{
     protected Utente utente;
     @Before
     public void setUp(){

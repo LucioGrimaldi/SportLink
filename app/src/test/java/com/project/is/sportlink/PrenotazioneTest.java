@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
  * Created by bitol on 26/01/2017.
  */
 
-public class Prenotazione_test {
+public class PrenotazioneTest {
     protected Prenotazione prenotazione;
     @Before
     public void setUp() throws Exception{

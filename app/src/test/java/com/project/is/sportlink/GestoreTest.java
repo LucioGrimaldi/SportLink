@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
  * Created by bitol on 13/01/2017.
  */
 
-public class Gestore_test {
+public class GestoreTest {
     protected Gestore gestore;
     @Before
     public void setUp(){

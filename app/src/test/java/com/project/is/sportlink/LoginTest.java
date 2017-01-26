@@ -1,25 +1,16 @@
 package com.project.is.sportlink;
-
-import android.content.Context;
-import android.content.pm.InstrumentationInfo;
-import android.widget.EditText;
-
 import com.project.is.sportlink.ui.LoginActivity;
-
 import junit.framework.TestSuite;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 
 /**
  * Created by bitol on 16/01/2017.
  */
 
-public class Login_test {
+public class LoginTest {
     protected LoginActivity login;
     @Before
     public void setUp() throws Exception{
@@ -41,12 +32,12 @@ public class Login_test {
     }
     @Test
     public void email() throws Exception{
-        login.setemail("mar3pic@gmail.com");
-        assertEquals("mar3pic@gmail.com",login.getemail());
+        login.setEmail("mar3pic@gmail.com");
+        assertEquals("mar3pic@gmail.com",login.getEmail());
     }
     @Test
     public void pass() throws Exception{
-        login.setpass("pippo");
-        assertEquals("pippo",login.getpass());
+        login.setPass("pippo");
+        assertEquals("pippo",login.getPass());
     }
 }
