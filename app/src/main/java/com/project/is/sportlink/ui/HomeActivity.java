@@ -27,6 +27,8 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private FragmentTransaction fragmentTransaction;
     private ImageView searchHomeButton;
     private TextView textViewVisualizzazionePrenotazioniUtente;
+    private TextView textViewNavHeaderNomeCognomeUtente;
+    private TextView textViewNavHeaderEmailUtente;
     private HomeFragment homeFragment;
     private String mIdUtente;
     private String mIdGestore;
@@ -65,6 +67,8 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        textViewNavHeaderNomeCognomeUtente = (TextView)findViewById(R.id.textViewSideNavHeaderNomeCognomeUtente);
 
     }
 
