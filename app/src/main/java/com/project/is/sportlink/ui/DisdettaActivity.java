@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.project.is.sportlink.R;
@@ -19,6 +21,7 @@ public class DisdettaActivity extends AppCompatActivity {
     private TextView textViewNomeCampoPrenotazione;
     private TextView textViewNomeStrutturaPrenotazione;
     private TextView textViewIndirizzoPrenotazione;
+    private ImageButton buttonBackFromDisdetta;
     private String idPrenotazione;
     private String dataPrenotazione;
     private String orarioPrenotazione;
@@ -35,6 +38,14 @@ public class DisdettaActivity extends AppCompatActivity {
         textViewOrarioSelezionato = (TextView)findViewById(R.id.orarioPrenotazione);
         textViewNomeCampoPrenotazione = (TextView)findViewById(R.id.textViewNomeCampoPrenotazione);
         textViewNomeStrutturaPrenotazione = (TextView)findViewById(R.id.textViewNomeStrutturaPrenotazione);
+
+        buttonBackFromDisdetta = (ImageButton)findViewById(R.id.backFromDisdetta);
+        buttonBackFromDisdetta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         Intent i = getIntent();
         idPrenotazione = i.getStringExtra("ID_PRENOTAZIONE");
