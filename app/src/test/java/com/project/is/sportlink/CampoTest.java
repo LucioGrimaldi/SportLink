@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
  * Created by bitol on 16/01/2017.
  */
 
-public class Campo_test {
+public class CampoTest {
     protected CampoRegistrationActivity campo;
     @Before
     public void setUp() throws Exception{
@@ -23,7 +23,7 @@ public class Campo_test {
         campo = null;
     }
     public Test suite(TestCase obj){
-        return (Test) obj;
+        return obj;
     }
 
     @org.junit.Test

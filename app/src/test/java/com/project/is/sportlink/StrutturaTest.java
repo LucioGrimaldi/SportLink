@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
  * Created by bitol on 16/01/2017.
  */
 
-public class Struttura_test {
+public class StrutturaTest {
     protected StrutturaRegistrationActivity struttura;
     @Before
     public void setUp() throws Exception{
