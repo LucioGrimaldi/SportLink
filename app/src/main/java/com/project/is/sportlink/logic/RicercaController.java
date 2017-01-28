@@ -7,8 +7,8 @@ import android.os.Build;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.project.is.sportlink.DataModel.Campo;
-import com.project.is.sportlink.DataModel.Struttura;
+import com.project.is.sportlink.dataModel.Campo;
+import com.project.is.sportlink.dataModel.Struttura;
 import com.project.is.sportlink.ui.RisultatiRicercaFragment;
 import com.squareup.okhttp.OkHttpClient;
 

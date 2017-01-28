@@ -5,16 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.project.is.sportlink.DataModel.Campo;
-import com.project.is.sportlink.DataModel.Gestore;
-import com.project.is.sportlink.DataModel.Struttura;
+import com.project.is.sportlink.dataModel.Campo;
+import com.project.is.sportlink.dataModel.Gestore;
+import com.project.is.sportlink.dataModel.Struttura;
 import com.project.is.sportlink.ui.LoginActivity;
 import com.squareup.okhttp.OkHttpClient;
 

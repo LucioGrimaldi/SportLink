@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.project.is.sportlink.DataModel.Prenotazione;
+import com.project.is.sportlink.dataModel.Prenotazione;
 import com.project.is.sportlink.R;
 
 /**

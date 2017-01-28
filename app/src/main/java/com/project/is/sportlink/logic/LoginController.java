@@ -3,18 +3,16 @@ package com.project.is.sportlink.logic;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.project.is.sportlink.DataModel.Gestore;
-import com.project.is.sportlink.DataModel.Utente;
+import com.project.is.sportlink.dataModel.Gestore;
+import com.project.is.sportlink.dataModel.Utente;
 import com.project.is.sportlink.ui.HomeActivity;
 import com.squareup.okhttp.OkHttpClient;
 

@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.project.is.sportlink.DataModel.Prenotazione;
+import com.project.is.sportlink.dataModel.Prenotazione;
 import com.project.is.sportlink.R;
 
 /**

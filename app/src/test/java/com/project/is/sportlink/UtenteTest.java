@@ -1,12 +1,10 @@
 package com.project.is.sportlink;
 
-import com.project.is.sportlink.DataModel.Utente;
+import com.project.is.sportlink.dataModel.Utente;
 
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

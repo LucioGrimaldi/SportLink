@@ -1,7 +1,6 @@
 package com.project.is.sportlink;
 
-import com.google.common.util.concurrent.ExecutionError;
-import com.project.is.sportlink.DataModel.Gestore;
+import com.project.is.sportlink.dataModel.Gestore;
 import org.junit.Test;
 import junit.framework.TestCase;
 

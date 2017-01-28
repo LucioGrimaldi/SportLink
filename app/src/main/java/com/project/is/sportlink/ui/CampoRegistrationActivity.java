@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.is.sportlink.DataModel.Struttura;
 import com.project.is.sportlink.R;
 import com.project.is.sportlink.logic.GestoreRegistrationController;
 

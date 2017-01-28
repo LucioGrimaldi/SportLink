@@ -1,9 +1,7 @@
 package com.project.is.sportlink.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.project.is.sportlink.DataModel.Campo;
-import com.project.is.sportlink.DataModel.Struttura;
-import com.project.is.sportlink.DataModel.Utente;
+import com.project.is.sportlink.dataModel.Campo;
 import com.project.is.sportlink.R;
-
-import java.util.List;
 
 /**
  * Created by luciogrimaldi on 15/01/17.
@@ -63,6 +58,23 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
 
         TextView textViewIndirizzo = (TextView)element.findViewById(R.id.indirizzoRisultati);
         textViewIndirizzo.setText(indirizzo);
+
+        ImageView imageViewTipoCampo = (ImageView)element.findViewById(R.id.imageViewTipoCampo);
+
+        switch(currentItem.getmSport()){
+            case "Calcio a 5":
+                imageViewTipoCampo.setBackgroundResource(R.drawable.calcio_a_5);
+                imageViewTipoCampo.setAdjustViewBounds(true);
+                break;
+            case "Tennis":
+                imageViewTipoCampo.setBackgroundResource(R.drawable.tennis);
+                imageViewTipoCampo.setAdjustViewBounds(true);
+                imageViewTipoCampo.setCropToPadding(true);
+                break;
+            default:
+                imageViewTipoCampo.setBackgroundResource(R.drawable.default_placeholder);
+                break;
+        }
 
         Button buttonPrenota = (Button)element.findViewById(R.id.buttonPrenota);
         buttonPrenota.setOnClickListener(new View.OnClickListener() {
