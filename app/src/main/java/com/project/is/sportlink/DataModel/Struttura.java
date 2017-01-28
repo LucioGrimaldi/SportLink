@@ -1,4 +1,4 @@
-package com.project.is.sportlink.DataModel;
+package com.project.is.sportlink.dataModel;
 
 /**
  * Created by Mario on 11/01/2017.

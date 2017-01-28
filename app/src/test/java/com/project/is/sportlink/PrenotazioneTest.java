@@ -1,8 +1,6 @@
 package com.project.is.sportlink;
 
-import android.os.RemoteException;
-
-import com.project.is.sportlink.DataModel.Prenotazione;
+import com.project.is.sportlink.dataModel.Prenotazione;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

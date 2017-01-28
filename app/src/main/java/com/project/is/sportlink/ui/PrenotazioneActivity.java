@@ -1,11 +1,8 @@
 package com.project.is.sportlink.ui;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,19 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
-import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.project.is.sportlink.DataModel.Prenotazione;
 import com.project.is.sportlink.R;
 import com.project.is.sportlink.logic.PrenotazioneController;
-import com.squareup.okhttp.OkHttpClient;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
