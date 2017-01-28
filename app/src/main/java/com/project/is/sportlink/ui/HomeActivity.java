@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
 
     @Override
     public void effettuaRicerca(String città) {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("città",città);
         Log.d("Debug",mIdUtente+" "+mIdGestore);
