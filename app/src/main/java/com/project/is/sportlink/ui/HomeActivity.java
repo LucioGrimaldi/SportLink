@@ -59,6 +59,11 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         mIdGestore=getIntent().getStringExtra("GESTORE_ID");
         //Visualizza il fragment iniziale nella home
         setFragmentHome();
+        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("UTENTE_ID",mIdUtente);
+        editor.putString("GESTORE_ID",mIdGestore);
+        editor.apply();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,12 +128,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("città",città);
-        Log.d("Debug",mIdUtente+" "+mIdGestore);
-        editor.putString("UTENTE_ID",mIdUtente);
-        logger.info("ID_UTENTE = " + mIdUtente);
-        editor.putString("GESTORE_ID",mIdGestore);
         editor.apply();
-        sharedPref.contains("UTENTE_ID");
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         RisultatiRicercaFragment risultatiRicercaFragment = new RisultatiRicercaFragment();

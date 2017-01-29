@@ -136,17 +136,20 @@ public class PrenotazioneController {
 
     //in questo metodo viene crata una nuova prenotazione e dichiarata la query per effettuare l'inserimento.
 
-    public void creazioneNuovaPrenotazione (String data_p,String FK_utente,String FK_campo,String orario)throws ExecutionException,InterruptedException{
+    public void creazioneNuovaPrenotazione (String data_p,String FK_utente,String FK_campo,String orario,String nomeStruttura,String nomeCampo,String indirizzo)throws ExecutionException,InterruptedException{
         Prenotazione prenotazione= new Prenotazione();
         prenotazione.setmData_p(data_p);
         prenotazione.setmOrario(orario);
         prenotazione.setmFK_utente(FK_utente);
         prenotazione.setmFK_campo(FK_campo);
+        prenotazione.setmNomeStruttura(nomeStruttura);
+        prenotazione.setmNomeCampo(nomeCampo);
+        prenotazione.setmIndirizzo(indirizzo);
         mPrenotazioneTable.insert(prenotazione).get();
     }
 
     //questo metodo registra in modo effettivo la nuova registrazione sul db effettuando la richiesta al server.Produce un toast che indica se l'operazione è andata a buon fine.
-    public void registazioneNuovaPrenotazione(final String data_p, final String FK_utente, final String FK_campo, final String orario) {
+    public void registazioneNuovaPrenotazione(final String data_p, final String FK_utente, final String FK_campo, final String orario,final String nomeStruttura,final String nomeCampo,final String indirizzo) {
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
 
             @Override
@@ -157,7 +160,7 @@ public class PrenotazioneController {
             @Override
             protected Integer doInBackground(Void... voids) {
                 try{
-                    creazioneNuovaPrenotazione(data_p,FK_utente,FK_campo,orario);
+                    creazioneNuovaPrenotazione(data_p,FK_utente,FK_campo,orario,nomeStruttura,nomeCampo,indirizzo);
                     return 2;
                 }catch (ExecutionException e){
                     e.printStackTrace();
@@ -172,7 +175,7 @@ public class PrenotazioneController {
             protected void onPostExecute(Integer r) {
                 super.onPostExecute(r);
                 if(r==2){
-                    Toast toast=Toast.makeText(activity,"La tua registrazione è stata completata con successo!",Toast.LENGTH_LONG);
+                    Toast toast=Toast.makeText(activity,"La tua prenotazione è stata completata con successo!",Toast.LENGTH_LONG);
                     toast.show();
                 }else {
                     Toast toast=Toast.makeText(activity,"Mi dispiace ma non è stato possibile effettuare la prenotazione riprova!",Toast.LENGTH_LONG);
