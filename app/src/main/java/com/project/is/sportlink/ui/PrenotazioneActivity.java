@@ -37,6 +37,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     private TextView textViewIndirizzoRisultati;
     private String nomeCampo;
     private String id_c;
+    private String sport;
     private String nomeStruttura;
     private String indirizzo;
     private String mIdUtente;
@@ -70,6 +71,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
+        sport=i.getStringExtra("SPORT");
         SharedPreferences sharedPref = getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
         mIdUtente=sharedPref.getString("UTENTE_ID",null);
         Log.d("debug",mIdUtente+" ");
@@ -117,8 +119,9 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+orarioPrenotazione);
         buttonPrenota.setClickable(false);
         if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
-        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo);
-        onBackPressed();
+
+        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo,sport);
+
         }else{
             buttonPrenota.setClickable(true);
             Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_LONG).show();
