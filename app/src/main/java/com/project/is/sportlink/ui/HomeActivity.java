@@ -1,8 +1,10 @@
 package com.project.is.sportlink.ui;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.is.sportlink.R;
 import java.util.logging.Logger;
@@ -116,7 +119,21 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else if(homeFragment.isVisible()){
+
+                new AlertDialog.Builder(this).setIcon(R.drawable.ic_report_problem_black_24dp).setTitle("Exit")
+                        .setMessage("Sei sicuro di voler uscire?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                moveTaskToBack(true);
+                                finish();
+                            }
+                        }).setNegativeButton("No", null).show();
+
+        }
+        else {
             super.onBackPressed();
         }
 

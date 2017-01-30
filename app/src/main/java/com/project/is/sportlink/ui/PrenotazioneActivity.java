@@ -30,6 +30,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
     private ImageButton backFromPrenotazioneButton;
     private Button buttonSelezionaData;
+    private Button buttonPrenota;
     private TextView textViewDataSelezionata;
     private TextView textViewNomeCampoRisultati;
     private TextView textViewNomeStrutturaRisultati;
@@ -58,6 +59,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
                 onBackPressed();
             }
         });
+        buttonPrenota = (Button)findViewById(R.id.buttonPrenota);
         textViewDataSelezionata = (TextView)findViewById(R.id.textViewDataSelezionata);
         textViewNomeCampoRisultati = (TextView)findViewById(R.id.textViewNomeCampoRisultati);
         textViewNomeStrutturaRisultati = (TextView)findViewById(R.id.textViewNomeStrutturaRisultati);
@@ -113,9 +115,12 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     public void effettuaPrentazione(View v){
         String orarioPrenotazione = spinnerOrari.getSelectedItem().toString();
         logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+orarioPrenotazione);
+        buttonPrenota.setClickable(false);
         if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
         controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo);
+        onBackPressed();
         }else{
+            buttonPrenota.setClickable(true);
             Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_LONG).show();
         }
     }

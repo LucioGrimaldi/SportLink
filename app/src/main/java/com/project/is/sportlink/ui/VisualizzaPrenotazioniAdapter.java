@@ -67,7 +67,22 @@ public class VisualizzaPrenotazioniAdapter extends ArrayAdapter<Prenotazione> {
         textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaPrenotazione);
         textViewNomeStruttura.setText(nomeStruttura);
 
+ /*       switch(currentItem.getmSport()){
+            case "Calcio a 5":
+                imageViewTipoCampo.setBackgroundResource(R.drawable.calcio_a_5);
+                imageViewTipoCampo.setAdjustViewBounds(true);
+                break;
+            case "Tennis":
+                imageViewTipoCampo.setBackgroundResource(R.drawable.tennis);
+                imageViewTipoCampo.setAdjustViewBounds(true);
+                imageViewTipoCampo.setCropToPadding(true);
+                break;
+            default:
+                imageViewTipoCampo.setBackgroundResource(R.drawable.default_placeholder);
+                break;
+        }
 
+*/
 
         buttonDisdici = (Button)element.findViewById(R.id.buttonDisdici);
         buttonDisdici.setOnClickListener(new View.OnClickListener() {
