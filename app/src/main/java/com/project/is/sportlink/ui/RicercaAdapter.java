@@ -49,6 +49,7 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
         final String nome_s=currentItem.getmNome_s();
         final String nome_c=currentItem.getmNome();
         final String indirizzo=currentItem.getmIndirizzo_s();
+        final String sport=currentItem.getmSport();
         Log.d("Debug","ecco le info da inserire:"+nome_c+" "+nome_s+" "+indirizzo);
         TextView textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaRisultati);
         textViewNomeStruttura.setText(nome_s);
@@ -61,7 +62,7 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
 
         ImageView imageViewTipoCampo = (ImageView)element.findViewById(R.id.imageViewTipoCampo);
 
-        switch(currentItem.getmSport()){
+        switch(sport){
             case "Calcio a 5":
                 imageViewTipoCampo.setBackgroundResource(R.drawable.calcio_a_5);
                 imageViewTipoCampo.setAdjustViewBounds(true);
@@ -87,6 +88,7 @@ public class RicercaAdapter extends ArrayAdapter<Campo> {
                 i.putExtra("NOME_CAMPO", nome_c);
                 i.putExtra("NOME_STRUTTURA", nome_s);
                 i.putExtra("INDIRIZZO", indirizzo);
+                i.putExtra("SPORT",sport);
                 v.getContext().startActivity(i);
 
             }
