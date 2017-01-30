@@ -50,10 +50,9 @@ public class VisualizzaPrenotazioniAdapter extends ArrayAdapter<Prenotazione> {
         final String idPrenotazione = currentItem.getmId();
         final String orarioPrenotazione = currentItem.getmOrario();
         final String dataPrenotazione = currentItem.getmData_p();
-//        final String nomeStruttura = currentItem ;
-
-        //Da modificare ora nomeCampo sarà uguale all'id del campo ma non al nome
-        final String nomeCampo = currentItem.getmFK_campo();
+        final String nomeStruttura = currentItem.getmNomeStruttura() ;
+        final String nomeCampo = currentItem.getmNomeCampo();
+        final String indirizzo = currentItem.getmIndirizzo();
 
 
         textViewDataPrenotazione = (TextView)element.findViewById(R.id.dataPrenotazione);
@@ -64,11 +63,11 @@ public class VisualizzaPrenotazioniAdapter extends ArrayAdapter<Prenotazione> {
 
         textViewNomeCampo = (TextView)element.findViewById(R.id.nomeCampoPrenotazione);
         textViewNomeCampo.setText(nomeCampo);
-/*
-        //Creare il metodo per prendere il nome della struttura
+
         textViewNomeStruttura = (TextView)element.findViewById(R.id.nomeStrutturaPrenotazione);
         textViewNomeStruttura.setText(nomeStruttura);
-*/
+
+
 
         buttonDisdici = (Button)element.findViewById(R.id.buttonDisdici);
         buttonDisdici.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +80,8 @@ public class VisualizzaPrenotazioniAdapter extends ArrayAdapter<Prenotazione> {
                 i.putExtra("DATA_PRENOTAZIONE", dataPrenotazione);
                 i.putExtra("ORARIO_PRENOTAZIONE", orarioPrenotazione);
                 i.putExtra("NOME_CAMPO", nomeCampo);
-//                i.putExtra("NOME_STRUTTURA", nomeStruttura);
+                i.putExtra("NOME_STRUTTURA", nomeStruttura);
+                i.putExtra("INDIRIZZO",indirizzo);
                 v.getContext().startActivity(i);
             }
         });

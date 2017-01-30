@@ -114,7 +114,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         String orarioPrenotazione = spinnerOrari.getSelectedItem().toString();
         logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+orarioPrenotazione);
         if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
-        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione);
+        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo);
         }else{
             Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_LONG).show();
         }
