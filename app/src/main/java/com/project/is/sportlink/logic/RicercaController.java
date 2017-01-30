@@ -84,7 +84,7 @@ public class RicercaController {
             protected void onPreExecute() {
                 super.onPreExecute();
                 dialog = new ProgressDialog(ricercaFragment.getActivity());
-                dialog.setMessage("Please wait...");
+                dialog.setMessage("Attendere prego...");
                 dialog.setIndeterminate(true);
                 dialog.show();
             }

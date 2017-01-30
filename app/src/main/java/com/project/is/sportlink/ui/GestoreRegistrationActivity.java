@@ -1,12 +1,14 @@
 package com.project.is.sportlink.ui;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.is.sportlink.R;
@@ -22,6 +24,7 @@ public class GestoreRegistrationActivity extends AppCompatActivity{
     private EditText editTextCognomeGestore;
     private EditText editTextEmailGestore;
     private EditText editTextPasswordGestore;
+    private TextView textViewInfoRegistrazioneGestore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class GestoreRegistrationActivity extends AppCompatActivity{
         editTextEmailGestore = (EditText)findViewById(R.id.editTextEmailGestore);
         editTextPasswordGestore = (EditText)findViewById(R.id.ediTextPasswordGestore);
         buttonAvantiGestore = (Button)findViewById(R.id.button_avanti_gestore);
+        textViewInfoRegistrazioneGestore = (TextView)findViewById(R.id.textViewInfoRegistrazioneGestore);
+
+        Typeface RobotoThinFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        textViewInfoRegistrazioneGestore.setTypeface(RobotoThinFont);
 
     }
 

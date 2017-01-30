@@ -1,5 +1,7 @@
 package com.project.is.sportlink.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -83,10 +85,16 @@ public class DisdettaActivity extends AppCompatActivity {
 
     public void onTaskCompleted(int r){
         if(r==2){
-            Toast toast=Toast.makeText(this,"Hai effettuato la disdetta della prenotazione con successo!",Toast.LENGTH_LONG);
-            toast.show();
+            new AlertDialog.Builder(this).setIcon(R.drawable.ic_check_24dp).setTitle("Disdetta Effettuata!")
+                    .setMessage("Hai effettuato la disdetta della prenotazione con successo!")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            onBackPressed();
+                        }
+                    }).show();
         }else {
-            Toast toast=Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la disdetta riprova!",Toast.LENGTH_LONG);
+            Toast toast=Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la disdetta riprova!",Toast.LENGTH_SHORT);
             toast.show();
         }
     }

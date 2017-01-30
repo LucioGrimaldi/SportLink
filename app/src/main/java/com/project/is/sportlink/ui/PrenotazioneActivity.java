@@ -1,6 +1,8 @@
 package com.project.is.sportlink.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -121,10 +123,18 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
 
         controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo,sport);
+            new AlertDialog.Builder(this).setIcon(R.drawable.ic_check_24dp).setTitle("Prenotazione Effettuata!")
+                    .setMessage("Hai effettuato la prenotazione con successo!")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            onBackPressed();
+                        }
+                    }).show();
 
         }else{
             buttonPrenota.setClickable(true);
-            Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_SHORT).show();
         }
     }
 

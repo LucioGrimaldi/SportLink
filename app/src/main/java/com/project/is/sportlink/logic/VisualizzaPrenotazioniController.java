@@ -88,7 +88,7 @@ public class VisualizzaPrenotazioniController {
             protected void onPreExecute() {
                 super.onPreExecute();
                 dialog = new ProgressDialog(visualizzaPrenotazioniFragment.getActivity());
-                dialog.setMessage("Please wait...");
+                dialog.setMessage("Attendere prego...");
                 dialog.setIndeterminate(true);
                 dialog.show();
             }

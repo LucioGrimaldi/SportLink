@@ -80,7 +80,7 @@ public class PrenotazioneController {
             protected void onPreExecute() {
                 super.onPreExecute();
                 dialog = new ProgressDialog(activity);
-                dialog.setMessage("Please wait...");
+                dialog.setMessage("Attendere prego...");
                 dialog.setIndeterminate(true);
                 dialog.show();
             }
@@ -121,12 +121,12 @@ public class PrenotazioneController {
                 super.onPostExecute(r);
                 if(dialog.isShowing()){dialog.dismiss();}
                 if(r==null&&orariDisp.isEmpty()){
-                    Toast toast=Toast.makeText(activity,"non è sono stati trovati orari disponibili per il giorno selezionato!",Toast.LENGTH_LONG);
-                    toast.show();
+ //                   Toast toast=Toast.makeText(activity,"Non è sono stati trovati orari disponibili per il giorno selezionato!",Toast.LENGTH_SHORT);
+ //                   toast.show();
                 }else{
                     notifyActivityTaskCompleted();
-                    Toast toast=Toast.makeText(activity,"seleziona l'orario per la prenotazione tra quelli disponibili!",Toast.LENGTH_LONG);
-                    toast.show();
+ //                   Toast toast=Toast.makeText(activity,"Seleziona l'orario tra quelli disponibili!",Toast.LENGTH_SHORT);
+ //                   toast.show();
                 }
             }
         };
@@ -176,8 +176,8 @@ public class PrenotazioneController {
             protected void onPostExecute(Integer r) {
                 super.onPostExecute(r);
                 if(r==2){
-                    Toast toast=Toast.makeText(activity,"La tua prenotazione è stata completata con successo!",Toast.LENGTH_LONG);
-                    toast.show();
+  //                  Toast toast=Toast.makeText(activity,"La tua prenotazione è stata completata con successo!",Toast.LENGTH_LONG);
+  //                  toast.show();
                 }else {
                     Toast toast=Toast.makeText(activity,"Mi dispiace ma non è stato possibile effettuare la prenotazione riprova!",Toast.LENGTH_LONG);
                     toast.show();

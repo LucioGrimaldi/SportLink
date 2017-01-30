@@ -53,6 +53,8 @@ public class Prenotazione {
     @com.google.gson.annotations.SerializedName("indirizzo")
     private String mIndirizzo;
 
+    @com.google.gson.annotations.SerializedName("sport")
+    private String mSport;
 
     /**
      * Struttura constructor
@@ -61,7 +63,7 @@ public class Prenotazione {
 
     }
 
-    public Prenotazione(String mId, String mData_p, String mOrario,String mFK_campo,String mFK_utente,String mNomeStruttura,String mNomeCampo,String mIndirizzo) {
+    public Prenotazione(String mId, String mData_p, String mOrario,String mFK_campo,String mFK_utente,String mNomeStruttura,String mNomeCampo,String mIndirizzo,String mSport) {
         this.setmId(mId);
         this.setmData_p(mData_p);
         this.setmOrario(mOrario);
@@ -70,6 +72,15 @@ public class Prenotazione {
         this.setmNomeCampo(mNomeCampo);
         this.setmNomeStruttura(mNomeStruttura);
         this.setmIndirizzo(mIndirizzo);
+        this.setmSport(mSport);
+    }
+
+    public String getmSport() {
+        return mSport;
+    }
+
+    public void setmSport(String mSport) {
+        this.mSport = mSport;
     }
 
     public String getmNomeStruttura() {
