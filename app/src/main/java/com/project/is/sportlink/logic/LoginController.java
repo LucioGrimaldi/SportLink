@@ -134,6 +134,9 @@ public class LoginController {
                     intent.putExtra("IS_UTENTE",true);
                     intent.putExtra("IS_GESTORE",false);
                     intent.putExtra("UTENTE_ID",u.getmId());
+                    intent.putExtra("NOME_UTENTE", u.getmNome());
+                    intent.putExtra("COGNOME_UTENTE", u.getmCognome());
+                    intent.putExtra("EMAIL_UTENTE", u.getmEmail());
                     context.startActivity(intent);
                 }
 
@@ -194,7 +197,8 @@ public class LoginController {
                     Toast toast = Toast.makeText(context,"l'username o la password inserite sono errate",Toast.LENGTH_LONG);
                     toast.show();
                 }else{
-                    Intent intent= new Intent(context,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent= new Intent(context,HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("IS_UTENTE",false);
                     intent.putExtra("IS_GESTORE",true);
                     intent.putExtra("GESTORE_ID",g.getmId());

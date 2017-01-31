@@ -1,6 +1,7 @@
 package com.project.is.sportlink.ui;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.is.sportlink.R;
@@ -23,6 +25,7 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
     private EditText editTextTelefonoStruttura;
     private EditText editTextIndirizzoStruttura;
     private EditText editTextCittaStruttura;
+    private TextView textViewInfoRegistrationeStruttura;
     private String nomeGestore;
     private String cognomeGestore;
     private String emailGestore;
@@ -42,6 +45,10 @@ public class StrutturaRegistrationActivity extends AppCompatActivity {
         editTextIndirizzoStruttura = (EditText)findViewById(R.id.ediTextIndirizzoStruttura);
         editTextCittaStruttura = (EditText)findViewById(R.id.ediTextCittaStruttura);
         buttonAvantiStruttura = (Button)findViewById(R.id.button_avanti_struttura);
+        textViewInfoRegistrationeStruttura = (TextView)findViewById(R.id.textViewInfoRegistrazioneStruttura);
+
+        Typeface RobotoThinFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        textViewInfoRegistrationeStruttura.setTypeface(RobotoThinFont);
 
         Intent i = getIntent();
         nomeGestore = i.getStringExtra("NOME_GESTORE");

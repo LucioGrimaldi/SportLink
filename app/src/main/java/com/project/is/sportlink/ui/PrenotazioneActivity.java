@@ -1,6 +1,8 @@
 package com.project.is.sportlink.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,12 +32,14 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
     private ImageButton backFromPrenotazioneButton;
     private Button buttonSelezionaData;
+    private Button buttonPrenota;
     private TextView textViewDataSelezionata;
     private TextView textViewNomeCampoRisultati;
     private TextView textViewNomeStrutturaRisultati;
     private TextView textViewIndirizzoRisultati;
     private String nomeCampo;
     private String id_c;
+    private String sport;
     private String nomeStruttura;
     private String indirizzo;
     private String mIdUtente;
@@ -58,6 +62,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
                 onBackPressed();
             }
         });
+        buttonPrenota = (Button)findViewById(R.id.buttonPrenota);
         textViewDataSelezionata = (TextView)findViewById(R.id.textViewDataSelezionata);
         textViewNomeCampoRisultati = (TextView)findViewById(R.id.textViewNomeCampoRisultati);
         textViewNomeStrutturaRisultati = (TextView)findViewById(R.id.textViewNomeStrutturaRisultati);
@@ -68,6 +73,7 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
+        sport=i.getStringExtra("SPORT");
         SharedPreferences sharedPref = getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
         mIdUtente=sharedPref.getString("UTENTE_ID",null);
         Log.d("debug",mIdUtente+" ");
@@ -113,10 +119,22 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
     public void effettuaPrentazione(View v){
         String orarioPrenotazione = spinnerOrari.getSelectedItem().toString();
         logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+orarioPrenotazione);
+        buttonPrenota.setClickable(false);
         if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
-        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione);
+
+        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo,sport);
+            new AlertDialog.Builder(this).setIcon(R.drawable.ic_check_24dp).setTitle("Prenotazione Effettuata!")
+                    .setMessage("Hai effettuato la prenotazione con successo!")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            onBackPressed();
+                        }
+                    }).show();
+
         }else{
-            Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_LONG).show();
+            buttonPrenota.setClickable(true);
+            Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_SHORT).show();
         }
     }
 

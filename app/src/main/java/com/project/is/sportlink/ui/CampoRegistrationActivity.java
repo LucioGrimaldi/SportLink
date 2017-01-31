@@ -2,6 +2,7 @@ package com.project.is.sportlink.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class CampoRegistrationActivity extends AppCompatActivity {
 
     private Button buttonSignUp;
     private EditText editTextNomeCampo;
+    private TextView textViewInfoRegistrazioneCampo;
     private Spinner spinner;
     private String nomeGestore;
     private String cognomeGestore;
@@ -46,6 +48,10 @@ public class CampoRegistrationActivity extends AppCompatActivity {
 
         editTextNomeCampo = (EditText)findViewById(R.id.editTextNomeCampo);
         buttonSignUp = (Button)findViewById(R.id.button_signup_campo);
+        textViewInfoRegistrazioneCampo = (TextView)findViewById(R.id.textViewInfoRegistrazioneCampo);
+        Typeface RobotoThinFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        textViewInfoRegistrazioneCampo.setTypeface(RobotoThinFont);
+
         spinner = (Spinner)findViewById(R.id.spinner_selezione_sport);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sport_selezionabili, android.R.layout.simple_spinner_item);
