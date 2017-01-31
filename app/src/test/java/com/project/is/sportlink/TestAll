@@ -1,0 +1,29 @@
+package com.project.is.sportlink;
+
+import junit.framework.JUnit4TestAdapter;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+/**
+ * Created by bitol on 13/01/2017.
+ */
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        Utente_test.class,
+        Gestore_test.class,
+        Login_test.class,
+        Struttura_test.class,
+        Campo_test.class,
+        Prenotazione_test.class,
+        Ricerca_test.class
+})
+public class TestAll {
+    public static Test suite(){
+        TestSuite suite = new TestSuite();
+        suite.addTest(new JUnit4TestAdapter(Utente_test.class));
+        return suite();
+    }
+}
