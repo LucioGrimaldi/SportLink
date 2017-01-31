@@ -134,6 +134,9 @@ public class LoginController {
                     intent.putExtra("IS_UTENTE",true);
                     intent.putExtra("IS_GESTORE",false);
                     intent.putExtra("UTENTE_ID",u.getmId());
+                    intent.putExtra("NOME_UTENTE", u.getmNome());
+                    intent.putExtra("COGNOME_UTENTE", u.getmCognome());
+                    intent.putExtra("EMAIL_UTENTE", u.getmEmail());
                     context.startActivity(intent);
                 }
 

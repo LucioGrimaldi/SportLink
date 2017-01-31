@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -30,11 +31,15 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private FragmentTransaction fragmentTransaction;
     private ImageView searchHomeButton;
     private TextView textViewVisualizzazionePrenotazioniUtente;
-    private TextView textViewNavHeaderNomeCognomeUtente;
     private TextView textViewNavHeaderEmailUtente;
+    private TextView textViewSideNavHeaderNomeUtente;
+    private TextView textViewLogout;
     private HomeFragment homeFragment;
     private String mIdUtente;
     private String mIdGestore;
+    private String mNomeUtente;
+    private String mCognomeUtente;
+    private String mEmailUtente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +63,12 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
             }
         });
 
-        mIdUtente=getIntent().getStringExtra("UTENTE_ID");
-        mIdGestore=getIntent().getStringExtra("GESTORE_ID");
+        mIdUtente = getIntent().getStringExtra("UTENTE_ID");
+        mIdGestore = getIntent().getStringExtra("GESTORE_ID");
+        mNomeUtente = getIntent().getStringExtra("NOME_UTENTE");
+        mCognomeUtente = getIntent().getStringExtra("COGNOME_UTENTE");
+        mEmailUtente = getIntent().getStringExtra("EMAIL_UTENTE");
+
         //Visualizza il fragment iniziale nella home
         setFragmentHome();
         SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
@@ -76,7 +85,13 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        textViewNavHeaderNomeCognomeUtente = (TextView)findViewById(R.id.textViewSideNavHeaderNomeCognomeUtente);
+        textViewLogout = (TextView)findViewById(R.id.textViewLogout);
+        textViewSideNavHeaderNomeUtente = (TextView)findViewById(R.id.textViewSideNavHeaderNomeUtente);
+        textViewSideNavHeaderNomeUtente.setText(mNomeUtente + " " + mCognomeUtente);
+
+        textViewNavHeaderEmailUtente = (TextView)findViewById(R.id.textViewSideNavHeaderEmailUtente);
+        textViewNavHeaderEmailUtente.setText(mEmailUtente);
+
 
     }
 
@@ -157,6 +172,17 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     public static void closeKeyboard(Context c, IBinder windowToken) {
         InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(windowToken, 0);
+    }
+
+    public void logout(View v){
+        SharedPreferences preferences = getSharedPreferences("shredPrefs",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+        finish();
+
+        Intent i = new Intent(this, WelcomeActivity.class);
+        startActivity(i);
     }
 
 }
