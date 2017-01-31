@@ -95,7 +95,7 @@ public class LoginController {
             protected void onPreExecute() {
                 super.onPreExecute();
                 dialog = new ProgressDialog(context);
-                dialog.setMessage("Please wait...");
+                dialog.setMessage("Attendere prego...");
                 dialog.setIndeterminate(true);
                 dialog.show();
             }

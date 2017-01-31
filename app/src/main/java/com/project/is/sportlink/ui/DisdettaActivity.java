@@ -3,12 +3,14 @@ package com.project.is.sportlink.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +31,14 @@ public class DisdettaActivity extends AppCompatActivity {
     private TextView textViewNomeStrutturaPrenotazione;
     private TextView textViewIndirizzoPrenotazione;
     private ImageButton buttonBackFromDisdetta;
+    private ImageView imageViewBannerDisdetta;
     private String idPrenotazione;
     private String dataPrenotazione;
     private String orarioPrenotazione;
     private String nomeCampo;
     private String nomeStruttura;
     private String indirizzo;
+    private String sport;
     private DisdettaController controller;
     private Button disdettaButton;
 
@@ -65,6 +69,7 @@ public class DisdettaActivity extends AppCompatActivity {
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
+        sport = i.getStringExtra("SPORT");
         controller=new DisdettaController(this,idPrenotazione);
 
         textViewOrarioSelezionato.setText(orarioPrenotazione);
@@ -81,6 +86,8 @@ public class DisdettaActivity extends AppCompatActivity {
             }
         });
 
+        imageViewBannerDisdetta = (ImageView)findViewById(R.id.imageViewBannerDisdetta);
+        setImmagineBanner(imageViewBannerDisdetta, sport);
     }
 
     public void onTaskCompleted(int r){
@@ -96,6 +103,24 @@ public class DisdettaActivity extends AppCompatActivity {
         }else {
             Toast toast=Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la disdetta riprova!",Toast.LENGTH_SHORT);
             toast.show();
+        }
+    }
+
+    private void setImmagineBanner(ImageView imageView, String sportPraticato) {
+
+        switch (sportPraticato) {
+            case "Calcio a 5":
+                imageView.setBackgroundResource(R.drawable.calcio_a_5_banner_2);
+                imageView.setAdjustViewBounds(true);
+                break;
+            case "Tennis":
+                imageView.setBackgroundResource(R.drawable.tennis_banner);
+                imageView.setAdjustViewBounds(true);
+                break;
+            default:
+                imageView.setBackgroundResource(R.drawable.banner_placeholder);
+                imageView.setAdjustViewBounds(true);
+                break;
         }
     }
 }

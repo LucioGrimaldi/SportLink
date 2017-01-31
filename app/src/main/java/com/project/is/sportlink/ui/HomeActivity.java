@@ -161,6 +161,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("città",città);
         editor.apply();
+        editor.apply();
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         RisultatiRicercaFragment risultatiRicercaFragment = new RisultatiRicercaFragment();

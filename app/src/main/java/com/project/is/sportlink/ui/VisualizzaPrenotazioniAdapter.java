@@ -102,6 +102,7 @@ public class VisualizzaPrenotazioniAdapter extends ArrayAdapter<Prenotazione> {
                 i.putExtra("NOME_CAMPO", nomeCampo);
                 i.putExtra("NOME_STRUTTURA", nomeStruttura);
                 i.putExtra("INDIRIZZO",indirizzo);
+                i.putExtra("SPORT", sport);
                 v.getContext().startActivity(i);
             }
         });

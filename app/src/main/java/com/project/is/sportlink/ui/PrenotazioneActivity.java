@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,9 +29,10 @@ import java.util.logging.Logger;
  * Created by luciogrimaldi on 15/01/17.
  */
 
-public class PrenotazioneActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener{
+public class PrenotazioneActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener {
 
     private ImageButton backFromPrenotazioneButton;
+    private ImageView imageViewBannerSport;
     private Button buttonSelezionaData;
     private Button buttonPrenota;
     private TextView textViewDataSelezionata;
@@ -55,44 +57,47 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
 
         logger = Logger.getLogger("info");
 
-        backFromPrenotazioneButton = (ImageButton)findViewById(R.id.backFromPrenotazione);
+        backFromPrenotazioneButton = (ImageButton) findViewById(R.id.backFromPrenotazione);
         backFromPrenotazioneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        buttonPrenota = (Button)findViewById(R.id.buttonPrenota);
-        textViewDataSelezionata = (TextView)findViewById(R.id.textViewDataSelezionata);
-        textViewNomeCampoRisultati = (TextView)findViewById(R.id.textViewNomeCampoRisultati);
-        textViewNomeStrutturaRisultati = (TextView)findViewById(R.id.textViewNomeStrutturaRisultati);
-        textViewIndirizzoRisultati = (TextView)findViewById(R.id.textViewIndirizzoRisultati);
+        buttonPrenota = (Button) findViewById(R.id.buttonPrenota);
+        textViewDataSelezionata = (TextView) findViewById(R.id.textViewDataSelezionata);
+        textViewNomeCampoRisultati = (TextView) findViewById(R.id.textViewNomeCampoRisultati);
+        textViewNomeStrutturaRisultati = (TextView) findViewById(R.id.textViewNomeStrutturaRisultati);
+        textViewIndirizzoRisultati = (TextView) findViewById(R.id.textViewIndirizzoRisultati);
 
         Intent i = getIntent();
-        id_c=i.getStringExtra("ID_CAMPO");
+        id_c = i.getStringExtra("ID_CAMPO");
         nomeCampo = i.getStringExtra("NOME_CAMPO");
         nomeStruttura = i.getStringExtra("NOME_STRUTTURA");
         indirizzo = i.getStringExtra("INDIRIZZO");
-        sport=i.getStringExtra("SPORT");
-        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE);
-        mIdUtente=sharedPref.getString("UTENTE_ID",null);
-        Log.d("debug",mIdUtente+" ");
+        sport = i.getStringExtra("SPORT");
+        SharedPreferences sharedPref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        mIdUtente = sharedPref.getString("UTENTE_ID", null);
+        Log.d("debug", mIdUtente + " ");
 
         textViewNomeCampoRisultati.setText(nomeCampo);
         textViewNomeStrutturaRisultati.setText(nomeStruttura);
         textViewIndirizzoRisultati.setText(indirizzo);
 
-        spinnerOrari = (Spinner)findViewById(R.id.spinner_orari);
+        spinnerOrari = (Spinner) findViewById(R.id.spinner_orari);
 
-        buttonSelezionaData = (Button)findViewById(R.id.button_seleziona_data);
+        buttonSelezionaData = (Button) findViewById(R.id.button_seleziona_data);
         buttonSelezionaData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
-                datePickerFragment.show(getFragmentManager(),"datePickerFragment");
+                datePickerFragment.show(getFragmentManager(), "datePickerFragment");
 
             }
         });
+
+        imageViewBannerSport = (ImageView) findViewById(R.id.imageViewBannerPrenotazione);
+        setImmagineBanner(imageViewBannerSport, sport);
     }
 
     @Override
@@ -100,29 +105,29 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         super.onBackPressed();
     }
 
-    public String getDataSelezionata(){
+    public String getDataSelezionata() {
         return textViewDataSelezionata.getText().toString();
     }
 
-    public String getNomeCampo(){
+    public String getNomeCampo() {
         return nomeCampo;
     }
 
-    public String getNomeStruttura(){
+    public String getNomeStruttura() {
         return nomeStruttura;
     }
 
-    public String getIndirizzo(){
+    public String getIndirizzo() {
         return indirizzo;
     }
 
-    public void effettuaPrentazione(View v){
+    public void effettuaPrentazione(View v) {
         String orarioPrenotazione = spinnerOrari.getSelectedItem().toString();
-        logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo()+"id utente"+mIdUtente+"orario:"+orarioPrenotazione);
+        logger.info("nome campo = " + getNomeCampo() + " nome struttura = " + getNomeStruttura() + " indirizzo = " + getIndirizzo() + "id utente" + mIdUtente + "orario:" + orarioPrenotazione);
         buttonPrenota.setClickable(false);
-        if(id_c!=null && mIdUtente!=null && orarioPrenotazione!=null && dataSelezionata!=null){
+        if (id_c != null && mIdUtente != null && orarioPrenotazione != null && dataSelezionata != null) {
 
-        controller.registazioneNuovaPrenotazione(dataSelezionata,mIdUtente,id_c,orarioPrenotazione,nomeStruttura,nomeCampo,indirizzo,sport);
+            controller.registazioneNuovaPrenotazione(dataSelezionata, mIdUtente, id_c, orarioPrenotazione, nomeStruttura, nomeCampo, indirizzo, sport);
             new AlertDialog.Builder(this).setIcon(R.drawable.ic_check_24dp).setTitle("Prenotazione Effettuata!")
                     .setMessage("Hai effettuato la prenotazione con successo!")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -132,14 +137,14 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
                         }
                     }).show();
 
-        }else{
+        } else {
             buttonPrenota.setClickable(true);
-            Toast.makeText(this,"Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mi dispiace ma non è stato possibile effettuare la prenotazione.\nRiprova", Toast.LENGTH_SHORT).show();
         }
     }
 
     //questo metodo si occupa di creare un'adapter con le informazioni degli orari ed aggiungerlo allo spinner.
-    public void createSpinnerContentFromArray(Spinner spinner, List<String> arrayListResorce){
+    public void createSpinnerContentFromArray(Spinner spinner, List<String> arrayListResorce) {
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayListResorce);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -154,13 +159,30 @@ public class PrenotazioneActivity extends AppCompatActivity implements DatePicke
         dataSelezionata = dayOfMonth + "/" + monthOfYear + 1 + "/" + year;
         logger.info("DATA SELEZIONATA = " + dataSelezionata);
         textViewDataSelezionata.setText(dataSelezionata);
-        controller=new PrenotazioneController(this);
-        controller.impostaOrariDisponibiliComboBox(dataSelezionata,id_c);
+        controller = new PrenotazioneController(this);
+        controller.impostaOrariDisponibiliComboBox(dataSelezionata, id_c);
     }
 
-    public void onTaskCompleted(List<String> _response)
-    {
-        createSpinnerContentFromArray(spinnerOrari,_response);
+    public void onTaskCompleted(List<String> _response) {
+        createSpinnerContentFromArray(spinnerOrari, _response);
+    }
+
+    private void setImmagineBanner(ImageView imageView, String sportPraticato) {
+
+        switch (sportPraticato) {
+            case "Calcio a 5":
+                imageView.setBackgroundResource(R.drawable.calcio_a_5_banner_2);
+                imageView.setAdjustViewBounds(true);
+                break;
+            case "Tennis":
+                imageView.setBackgroundResource(R.drawable.tennis_banner);
+                imageView.setAdjustViewBounds(true);
+                break;
+            default:
+                imageView.setBackgroundResource(R.drawable.banner_placeholder);
+                imageView.setAdjustViewBounds(true);
+                break;
+        }
     }
 }
 

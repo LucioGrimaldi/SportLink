@@ -30,9 +30,9 @@
         android:layout_height="match_parent"
         android:layout_weight="0.75">
         <ImageView
+            android:id="@+id/imageViewBannerPrenotazione"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/banner_placeholder"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
     <LinearLayout
