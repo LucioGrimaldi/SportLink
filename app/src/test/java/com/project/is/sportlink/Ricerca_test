@@ -1,0 +1,32 @@
+package com.project.is.sportlink;
+
+import com.project.is.sportlink.logic.RicercaController;
+
+import junit.framework.TestCase;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+/**
+ * Created by bitol on 30/01/2017.
+ */
+@RunWith(JUnit4.class)
+public class Ricerca_test extends TestCase {
+    protected RicercaController ricercaController;
+    @Before
+    public void set_Up() throws Exception{
+        ricercaController = new RicercaController();
+    }
+    public void tearDown() throws Exception{
+        ricercaController = null;
+    }
+    public Test suite(TestCase obj){
+        return (Test) obj;
+    }
+    @Test
+    public void citta() throws Exception{
+        ricercaController.setCitta("Salerno");
+        assertEquals("Salerno",ricercaController.getCitta());
+    }
