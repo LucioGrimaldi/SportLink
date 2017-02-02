@@ -123,4 +123,11 @@ public class DisdettaActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+
+        super.onBackPressed();
+    }
 }

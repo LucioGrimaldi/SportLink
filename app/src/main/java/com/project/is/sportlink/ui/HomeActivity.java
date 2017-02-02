@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
     private TextView textViewSideNavHeaderNomeUtente;
     private TextView textViewLogout;
     private HomeFragment homeFragment;
+    private VisualizzaPrenotazioniFragment visualizzaPrenotazioniFragment;
     private String mIdUtente;
     private String mIdGestore;
     private String mNomeUtente;
@@ -107,7 +108,7 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         //Visualizzazione del fragment per vedere le prenotazioni attive dell'utente nella home
-        VisualizzaPrenotazioniFragment visualizzaPrenotazioniFragment = new VisualizzaPrenotazioniFragment();
+        visualizzaPrenotazioniFragment = new VisualizzaPrenotazioniFragment();
         fragmentTransaction.replace(R.id.fragment_container, visualizzaPrenotazioniFragment);
         fragmentTransaction.addToBackStack(null);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -186,4 +187,13 @@ public class HomeActivity extends AppCompatActivity implements RicercaFragment.R
         startActivity(i);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (visualizzaPrenotazioniFragment != null) {
+            if (visualizzaPrenotazioniFragment.isVisible()) {
+                setFragmentVisualizzaPrenotazioni();
+            }
+        }
+    }
 }
